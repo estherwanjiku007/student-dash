@@ -12,9 +12,7 @@ import {
     IoMdSettings
 } from 'react-icons/io'
 
-import { 
-    HiMiniUserPlus 
-} from "react-icons/hi2";
+
 
 export const DashBoard_Sidebar_Links = [
   {
@@ -36,12 +34,7 @@ export const DashBoard_Sidebar_Links = [
     path: '/contacts',
     icon: <IoIosCall/>
   },
-  {
-    key: 'register',
-    label: 'Register',
-    path: '/register',
-    icon: <HiMiniUserPlus/>
-  },
+  
   {
     key: 'login',
     label: 'Login',
