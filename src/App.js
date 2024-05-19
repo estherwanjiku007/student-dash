@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/shared/Layout';
-import Dashboard from './components/Dashboard';
+import Home from './components/Home';
 import Courses from './components/Courses';
-import Assignments from './components/Assignments';
+import Register from './components/Register';
 import Dailytask from './components/Dailytask';
 import Chatbox from './components/Chatbox';
 
@@ -11,9 +11,9 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Dashboard />} />
+          <Route index element={<Home />} />
           <Route path="courses" element={<Courses />} />
-          <Route path="assignments" element={<Assignments />} />
+          <Route path="Register" element={<Register />} />
           <Route path="dailytask" element={<Dailytask />} />
           <Route path="chatbox" element={<Chatbox />} />
         
