@@ -11,11 +11,11 @@ const linkClasses = 'flex items-center gap-2 font-light px-3 py-2 hover:bg-neutr
 export default function Sidebar() {
     return (
         // Sidebar container with styling
-        <div className='bg-neutral-900 w-60 p-3 flex flex-col text-white'>
+        <div className='bg-gray-900 w-60 p-3 flex flex-col text-white'>
             {/* Header section with logo and title */}
             <div className="flex items center gap-2 px-1 py-3">
                 <img src={Logo} alt="school logo" style={{ width: '50px', height: '50px' }} /> {/* Logo image */}
-                <span className="text-neutral-100 text-lg" style={{ paddingTop: '10px' }}>Virtuallearn</span> {/* Title */}
+                <span className="text-neutral-100 text-lg" style={{ paddingTop: '10px' }}>Virtulearn</span> {/* Title */}
             </div>
             {/* Main section for navigation links */}
             <div className='flex-1' >
