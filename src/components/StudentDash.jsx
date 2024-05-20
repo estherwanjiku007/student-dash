@@ -1,158 +1,211 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
+const API_BASE_URL = 'https://virtulearn-backend.onrender.com';
 
-
-/*This is not the official code, get the updated one */
-function StudentDash({ username }) {
-
-  const [newTask, setNewTask] = useState('');
-  const [tasks, setTasks] = useState(() => {
-    const savedTasks = localStorage.getItem('tasks');
-    return savedTasks ? JSON.parse(savedTasks) : [];
-  });
-
-  const [chatMessages, setChatMessages] = useState(() => {
-    const savedMessages = localStorage.getItem('chatMessages');
-    return savedMessages ? JSON.parse(savedMessages) : [];
-  });
+const StudentDash = () => {
+  const [courses, setCourses] = useState([]);
+  const [selectedCourse, setSelectedCourse] = useState(null);
+  const [chatMessages, setChatMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
+  const [students, setStudents] = useState([]);
+  const [selectedStudent, setSelectedStudent] = useState('');
 
   useEffect(() => {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-  }, [tasks]);
+    fetchCourses();
+    fetchChats();
+    fetchStudents();
+  }, []);
 
-  useEffect(() => {
-    localStorage.setItem('chatMessages', JSON.stringify(chatMessages));
-  }, [chatMessages]);
-
-  const handleAddTask = () => {
-    if (newTask.trim()) {
-      setTasks([...tasks, { name: newTask, completed: false }]);
-      setNewTask('');
+  const fetchCourses = async () => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/courses`);
+      const data = await response.json();
+      setCourses(data);
+    } catch (error) {
+      console.error('Error fetching courses:', error);
     }
   };
 
-  const handleDeleteTask = (index) => {
-    const updatedTasks = tasks.filter((_, i) => i !== index);
-    setTasks(updatedTasks);
+  const fetchCourseDetails = async (courseId) => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/courses/${courseId}`);
+      const data = await response.json();
+      setSelectedCourse(data);
+    } catch (error) {
+      console.error('Error fetching course details:', error);
+    }
   };
 
-  const handleTaskCompletion = (index) => {
-    const updatedTasks = [...tasks];
-    updatedTasks[index].completed = !updatedTasks[index].completed;
-    setTasks(updatedTasks);
+  const fetchChats = async () => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/coursechats`);
+      const data = await response.json();
+      setChatMessages(data);
+    } catch (error) {
+      console.error('Error fetching chats:', error);
+    }
   };
 
-  const handleSendMessage = () => {
-    if (newMessage.trim()) {
-      setChatMessages([...chatMessages, { text: newMessage, username }]);
+  const fetchStudents = async () => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/students`);
+      const data = await response.json();
+      setStudents(data);
+    } catch (error) {
+      console.error('Error fetching students:', error);
+    }
+  };
+
+  const deleteCourse = async (courseId, event) => {
+    event.stopPropagation();
+    try {
+      await fetch(`${API_BASE_URL}/courses/${courseId}`, {
+        method: 'DELETE'
+      });
+      setCourses(courses.filter(course => course.id !== courseId));
+    } catch (error) {
+      console.error('Error deleting course:', error);
+    }
+  };
+
+  const sendMessage = async () => {
+    if (!selectedStudent) {
+      alert('Please select a student to send the message to.');
+      return;
+    }
+
+    const messageData = {
+      course_id: selectedCourse ? selectedCourse.id : 1,
+      message: newMessage,
+      student_id: selectedStudent,
+      timestamp: new Date().toISOString()
+    };
+    try {
+      await fetch(`${API_BASE_URL}/coursechats`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(messageData)
+      });
       setNewMessage('');
+      fetchChats();
+    } catch (error) {
+      console.error('Error sending message:', error);
     }
   };
 
-  const handleDeleteChatMessage = (index) => {
-    const updatedMessages = [...chatMessages];
-    updatedMessages.splice(index, 1);
-    setChatMessages(updatedMessages);
-  };
-
-  const courses = [
-    {
-      name: 'Cyber Security',
-      content: 'Introduction to Cyber Security, Network Security, Cryptography, Risk Management.'
-    },
-    {
-      name: 'Computer Science',
-      content: 'Data Structures, Algorithms, Operating Systems, Computer Networks.'
-    },
-    {
-      name: 'Software Engineering',
-      content: 'Software Development Life Cycle, Agile Methodologies, Project Management, Quality Assurance.'
-    },
-    {
-      name: 'Data Science',
-      content: 'Data Analysis, Machine Learning, Statistical Methods, Data Visualization.'
+  const deleteChat = async (chatId) => {
+    try {
+      await fetch(`${API_BASE_URL}/coursechats/${chatId}`, {
+        method: 'DELETE'
+      });
+      setChatMessages(chatMessages.filter(chat => chat.id !== chatId));
+    } catch (error) {
+      console.error('Error deleting chat message:', error);
     }
-  ];
-
-  const [visibleCourseIndex, setVisibleCourseIndex] = useState(null);
-
-  const toggleCourseContent = (index) => {
-    setVisibleCourseIndex(visibleCourseIndex === index ? null : index);
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-5">
-      <h1 className="text-4xl font-bold text-center mb-6">Student Dashboard</h1>
-
-      {/* Todo List */}
-      <div className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">My Tasks for Today</h2>
-        <input
-          type="text"
-          placeholder="Enter a task..."
-          value={newTask}
-          onChange={(e) => setNewTask(e.target.value)}
-          className="border border-gray-300 p-2 rounded-lg mr-2"
-        />
-        <button onClick={handleAddTask} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Add Task
-        </button>
-        <ul className="mt-4">
-          {tasks.map((task, index) => (
-            <li key={index} className={`p-2 ${task.completed ? 'text-green-500 line-through' : ''}`}>
-              <span onClick={() => handleTaskCompletion(index)}>
-                {task.name}
-              </span>
-              <button onClick={() => handleDeleteTask(index)} className="text-red-500 hover:text-red-700 ml-4">
-                Delete
-              </button>
-            </li>
-          ))}
+    <div className="flex">
+      <div className="w-1/4 p-4 bg-gray-800 text-white">
+        <h2 className="text-2xl font-bold mb-4">Dashboard</h2>
+        <ul>
+          <li className="mb-2"><Link to="/school-owner-dashboard" className="hover:underline">Dashboard</Link></li>
+          <li className="mb-2"><Link to="/create-school" className="hover:underline">Assessments</Link></li>
+          <li className="mb-2"><Link to="/exams" className="hover:underline">Exams</Link></li>
+          <li className="mb-2"><Link to="/" className="hover:underline">Log out</Link></li>
         </ul>
       </div>
+      <div className="w-3/4 p-4">
+        <header className="mb-6">
+          <h1 className="text-3xl font-bold">Student Dashboard</h1>
+        </header>
 
-      {/* Chat Box */}
-      <div className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">Chat Box</h2>
-        <div className="border border-gray-300 p-4 rounded-lg mb-4">
-          {chatMessages.map((message, index) => (
-            <div key={index} className="flex items-center justify-between mb-2">
-              <strong>{username}:</strong> {message.text}
-              <button onClick={() => handleDeleteChatMessage(index)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">
-                Delete
-              </button>
-            </div>
-          ))}
-        </div>
-        <input
-          type="text"
-          placeholder="chat here"
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-          className="border border-gray-300 p-2 rounded-lg mr-2"
-        />
-        <button onClick={handleSendMessage} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Send
-        </button>
-      </div>
-
-      {/* Course Content */}
-      <div>
-        <h2 className="text-2xl font-semibold mb-4">Course Content</h2>
-        {courses.map((course, index) => (
-          <div key={index} className="mb-4">
-            <h3 onClick={() => toggleCourseContent(index)} className="text-xl font-semibold cursor-pointer">
-              {course.name}
-            </h3>
-            {visibleCourseIndex === index && (
-              <p className="mt-2">{course.content}</p>
-            )}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="courses-container">
+            {courses.map(course => (
+              <div
+                key={course.id}
+                className="card p-4 mb-4 bg-white shadow-md rounded-md cursor-pointer"
+                onClick={() => fetchCourseDetails(course.id)}
+              >
+                <h3 className="text-xl font-bold">{course.name}</h3>
+                <button
+                  className="mt-2 text-sm text-red-500 hover:text-red-700"
+                  onClick={(e) => deleteCourse(course.id, e)}
+                >
+                  Delete
+                </button>
+              </div>
+            ))}
           </div>
-        ))}
+
+          {selectedCourse && (
+            <div className="course-details p-4 bg-white shadow-md rounded-md">
+              <h2 className="text-2xl font-bold mb-4">{selectedCourse.name}</h2>
+              <p className="mb-4">{selectedCourse.body}</p>
+              <h3 className="text-xl font-bold mb-2">Resources:</h3>
+              {selectedCourse.resources && selectedCourse.resources.length > 0 ? (
+                <ul className="list-disc list-inside">
+                  {selectedCourse.resources.map(resource => (
+                    <li key={resource.id}>
+                      <strong>{resource.name}</strong> ({resource.type}): <a href={resource.url} className="text-blue-500 hover:underline">{resource.url}</a>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p>No resources available.</p>
+              )}
+            </div>
+          )}
+        </div>
+
+        <div className="chat-app mt-6">
+          <h2 className="text-2xl font-bold mb-4">Course Chat</h2>
+          <div className="chat-messages mb-4 p-4 bg-white shadow-md rounded-md h-64 overflow-y-scroll">
+            {chatMessages.map(chat => (
+              <div key={chat.id} className="chat-message mb-2 p-2 bg-gray-100 rounded-md">
+                <span>{chat.message}</span>
+                <button
+                  className="ml-2 text-sm text-red-500 hover:text-red-700"
+                  onClick={() => deleteChat(chat.id)}
+                >
+                  Delete
+                </button>
+              </div>
+            ))}
+          </div>
+          <select
+            value={selectedStudent}
+            onChange={(e) => setSelectedStudent(e.target.value)}
+            className="mb-2 p-2 border border-gray-300 rounded-md"
+          >
+            <option value="">Select student</option>
+            {students.map(student => (
+              <option key={student.id} value={student.id}>
+                {student.name}
+              </option>
+            ))}
+          </select>
+          <input
+            type="text"
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
+            className="mb-2 p-2 border border-gray-300 rounded-md w-full"
+            placeholder="Type a message..."
+          />
+          <button
+            onClick={sendMessage}
+            className="p-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
+          >
+            Send
+          </button>
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default StudentDash;

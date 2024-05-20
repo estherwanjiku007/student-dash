@@ -1,59 +1,78 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Login() {
-  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (username === 'student' && password === 'password') {
-      navigate('/dashboard', { state: { username } });
-    } else {
-      setError('Invalid username or password');
+
+    try {
+      const response = await axios.post('https://virtulearn-backend.onrender.com/login', {
+        name,
+        password
+      });
+
+      const { role, token } = response.data;
+      // Store token in local storage or state as needed
+      localStorage.setItem('token', token);
+
+      // Navigate to the appropriate dashboard based on the role
+      switch (role) {
+        case 'student':
+          navigate('/StudentDash', { state: { name } });
+          break;
+        case 'instructor':
+          navigate('/Teacherdashboard', { state: { name } });
+          break;
+        case 'owner':
+          navigate('/SchoolOwnerDashboard', { state: { name } });
+          break;
+        default:
+          setError('Invalid role');
+      }
+    } catch (error) {
+      if (error.response) {
+        setError(error.response.data.message || 'Login failed');
+      } else {
+        setError('Login failed');
+      }
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-xs">
-        <h2 className="text-4xl font-bold text-center text-gray-700">Login</h2>
-        {error && <p className="mt-2 text-center text-red-500">{error}</p>}
-        <form onSubmit={handleLogin} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded shadow-md w-full max-w-sm">
+        <h2 className="text-2xl font-bold mb-6">Login</h2>
+        {error && <p className="text-red-500 mb-4">{error}</p>}
+        <form onSubmit={handleLogin}>
           <div className="mb-4">
-            <label htmlFor="username" className="block text-gray-700 text-sm font-bold mb-2">
-              Username:
-            </label>
+            <label htmlFor="name" className="block text-gray-700 font-medium mb-2">Name:</label>
             <input
               type="text"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               required
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div className="mb-6">
-            <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">
-              Password:
-            </label>
+            <label htmlFor="password" className="block text-gray-700 font-medium mb-2">Password:</label>
             <input
               type="password"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-          <div className="flex items-center justify-between">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-              Login
-            </button>
-          </div>
+          <button className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200" type="submit">Login</button>
         </form>
       </div>
     </div>
