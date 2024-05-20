@@ -5,7 +5,7 @@ import thirdImg from '../assets/thirdimg_1200x780.jpg';
 import fourthImg from '../assets/fourthimg_1200x780.jpg';
 import { useNavigate } from 'react-router-dom';
 
-const programs = ["Remote-Learning", "Hybrid-Learning", "Weekend-Learning", "In-person-Learning"];
+const programs = ["Software-Engineer", "Cyber-Security", "Data Science", "Computer Science"];
 
 function Home() {
     const slideshow = [
@@ -48,7 +48,7 @@ function Home() {
                                 Ask Around and Find Out <br />
                                 that we are the Best <br /> School in Town.
                             </h1>
-                            <h2 className="text-2xl">Mode of Study: {programs[currentProgram]}</h2>
+                            <h2 className="text-3xl font-bold text-gray-200">Our Programs: {programs[currentProgram]}</h2>
                             <button className="bg-transparent border-4 border-orangered text-white py-2 px-4 rounded-md mt-4" onClick={handleNavigate}>
                                 Join Us
                             </button>
