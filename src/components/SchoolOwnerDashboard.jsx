@@ -1,10 +1,11 @@
+
+
 import React, { useState, useEffect } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
-import CreateSchool from './CreateSchool.jsx';
-import AddStudent from './AddStudent.jsx';
-import AddTeacher from './AddTeacher.jsx';
-import {useRef} from 'react-router-dom'
+import CreateSchool from './CreateSchool';
+import AddStudent from './AddStudent';
+import AddTeacher from './AddTeacher';
 
 function SchoolOwnerDashboard() {
     const [schools, setSchools] = useState([]);
@@ -25,7 +26,7 @@ function SchoolOwnerDashboard() {
     const deleteSchool = async (schoolId) => {
         try {
             await axios.delete(`https://virtulearn-backend.onrender.com/schools/${schoolId}`);
-            fetchSchools();  // Refresh the list after deletion
+            fetchSchools(); // Refresh the list after deletion
         } catch (error) {
             console.error('Error deleting school:', error);
             alert('Error deleting school');
@@ -37,16 +38,16 @@ function SchoolOwnerDashboard() {
             <div className="w-1/4 p-4 bg-gray-800 text-white min-h-screen">
                 <h2 className="text-2xl mb-4">Dashboard</h2>
                 <ul>
-                    <li className="mb-2"><Link to="/school-owner-dashboard" className="hover:underline">Dashboard</Link></li>
+                    <li className="mb-2"><Link to="/" className="hover:underline">Dashboard</Link></li>
                     <li className="mb-2"><Link to="/create-school" className="hover:underline">Create School</Link></li>
                     <li className="mb-2"><Link to="/add-student" className="hover:underline">Add Student</Link></li>
                     <li className="mb-2"><Link to="/add-teacher" className="hover:underline">Add Teacher</Link></li>
-                    <li className="mb-2"><Link to="/" className="hover:underline">Log out</Link></li>
+                    <li className="mb-2"><Link to="/logout" className="hover:underline">Log out</Link></li>
                 </ul>
             </div>
             <div className="w-3/4 p-8">
                 <Routes>
-                    <Route path="/school-owner-dashboard" element={
+                    <Route path="/" element={
                         <>
                             <h1 className="text-4xl font-bold mb-8">Welcome to your Manager Dashboard</h1>
                             <div className="mb-8">
@@ -86,4 +87,3 @@ function SchoolOwnerDashboard() {
 }
 
 export default SchoolOwnerDashboard;
-
