@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const API_BASE_URL = 'https://virtulearn-backend.onrender.com';
 
 const StudentDash = () => {
+  const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [chatMessages, setChatMessages] = useState([]);
@@ -107,22 +108,33 @@ const StudentDash = () => {
     }
   };
 
-  return (
-    <div className="flex">
-      <div className="w-1/4 p-4 bg-gray-800 text-white">
-        <h2 className="text-2xl font-bold mb-4">Dashboard</h2>
-        <ul>
-          <li className="mb-2"><Link to="/school-owner-dashboard" className="hover:underline">Dashboard</Link></li>
-          <li className="mb-2"><Link to="/create-school" className="hover:underline">Assessments</Link></li>
-          <li className="mb-2"><Link to="/exams" className="hover:underline">Exams</Link></li>
-          <li className="mb-2"><Link to="/" className="hover:underline">Log out</Link></li>
-        </ul>
-      </div>
-      <div className="w-3/4 p-4">
-        <header className="mb-6">
-          <h1 className="text-3xl font-bold">Student Dashboard</h1>
-        </header>
+  const handleAssessmentsClick = () => {
+    navigate('/create-school');
+  };
 
+  const handleExamsClick = () => {
+    navigate('/exams');
+  };
+   
+  return (
+    <div className="flex flex-col md:flex-row h-screen">
+      <div className="w-full md:w-1/4 p-4 border-r border-gray-300 overflow-y-auto">
+        <div className="mb-6">
+          <h1 className="text-3xl font-bold">Student Dashboard</h1>
+        </div>
+        <div className="mb-6">
+          <ul>
+            <li className="mb-2 text-black">
+              <button className="hover:underline border-b border-gray-300" onClick={handleAssessmentsClick}>Assessments</button>
+            </li>
+            <li className="mb-2 text-black">
+              <button className="hover:underline border-b border-gray-300" onClick={handleExamsClick}>Exams</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+  
+      <div className="w-full md:w-3/4 p-4 overflow-y-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="courses-container">
             {courses.map(course => (
@@ -141,7 +153,7 @@ const StudentDash = () => {
               </div>
             ))}
           </div>
-
+  
           {selectedCourse && (
             <div className="course-details p-4 bg-white shadow-md rounded-md">
               <h2 className="text-2xl font-bold mb-4">{selectedCourse.name}</h2>
@@ -161,7 +173,7 @@ const StudentDash = () => {
             </div>
           )}
         </div>
-
+  
         <div className="chat-app mt-6">
           <h2 className="text-2xl font-bold mb-4">Course Chat</h2>
           <div className="chat-messages mb-4 p-4 bg-white shadow-md rounded-md h-64 overflow-y-scroll">
@@ -206,6 +218,9 @@ const StudentDash = () => {
       </div>
     </div>
   );
+  
+  
+ 
 };
 
 export default StudentDash;

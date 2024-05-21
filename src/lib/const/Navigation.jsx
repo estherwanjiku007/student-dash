@@ -1,66 +1,53 @@
-import {
-    HiOutlineLogout,
-    HiCollection,
-    HiLogin,
-    HiHome,
-    HiOutlineQuestionMarkCircle
-    
-} from 'react-icons/hi'
+import { HiOutlineLogout, HiCollection, HiLogin, HiHome, HiOutlineQuestionMarkCircle } from 'react-icons/hi';
+import { IoIosCall, IoMdSettings } from 'react-icons/io';
 
-import {
-    IoIosCall,
-    IoMdSettings
-} from 'react-icons/io'
-
-
-
+// Sidebar links
 export const DashBoard_Sidebar_Links = [
   {
     key: 'home',
     label: 'Home',
     path: '/',
-    icon: <HiHome/>
+    icon: <HiHome />
   },
   
   {
     key: 'about',
     label: 'About',
     path: '/about',
-    icon: <HiCollection/>
+    icon: <HiCollection />
   },
   {
     key: 'contacts',
     label: 'Contacts',
     path: '/contacts',
-    icon: <IoIosCall/>
+    icon: <IoIosCall />
   },
-  
   {
     key: 'login',
     label: 'Login',
     path: '/login',
-    icon: <HiLogin/>
+    icon: <HiLogin />
   }
-]
+];
 
+// Bottom links
 export const Dashboard_bottom_links = [
-  
   {
     key: 'settings',
     label: 'Settings',
     path: '/settings',
-    icon: <IoMdSettings/>
+    icon: <IoMdSettings />
   },
   {
     key: 'support',
     label: 'Help & Support',
     path: '/support',
-    icon: <HiOutlineQuestionMarkCircle/>
+    icon: <HiOutlineQuestionMarkCircle />
   },
   {
     key: 'logout',
     label: 'Logout',
     path: '/logout',
-    icon: <HiOutlineLogout/>
-  },
-]
+    icon: <HiOutlineLogout />
+  }
+];
