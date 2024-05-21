@@ -9,14 +9,14 @@ const AddStudent = () => {
     name: '',
     course_id: '',
     school_id: '',
-    resource_id: '' // Corrected typo in field name
+    resourse_id: '' // Corrected typo in field name
   };
 
   const validationSchema = Yup.object({
     name: Yup.string().required('Name is required'),
     course_id: Yup.number().required('Course ID is required'),
     school_id: Yup.number().required('School ID is required'),
-    resource_id: Yup.number().required('Resource ID is required') // Corrected typo in field name
+    resourse_id: Yup.number().required('Resource ID is required') // Corrected typo in field name
   });
 
   const onSubmit = async (values, { setSubmitting, resetForm }) => {
@@ -62,9 +62,9 @@ const AddStudent = () => {
                 <ErrorMessage name="school_id" component="div" className="text-red-500 mt-1" />
               </div>
               <div className="mb-4">
-                <label htmlFor="resource_id" className="block text-gray-700 font-medium mb-2">Resource ID</label>
-                <Field type="number" id="resource_id" name="resource_id" className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                <ErrorMessage name="resource_id" component="div" className="text-red-500 mt-1" />
+                <label htmlFor="resourse_id" className="block text-gray-700 font-medium mb-2">Resource ID</label>
+                <Field type="number" id="resourse_id" name="resourse_id" className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <ErrorMessage name="resourse_id" component="div" className="text-red-500 mt-1" />
               </div>
               <button type="submit" disabled={isSubmitting} className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200">Add Student</button>
             </Form>
