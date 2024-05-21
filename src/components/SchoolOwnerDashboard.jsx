@@ -34,18 +34,31 @@ function SchoolOwnerDashboard() {
     };
 
     return (
-        <div className="flex">
-            <div className="w-1/4 p-4 bg-gray-800 text-white min-h-screen">
-                <h2 className="text-2xl mb-4">Dashboard</h2>
-                <ul>
-                    {/* <li className="mb-2"><Link to="/" className="hover:underline">Dashboard</Link></li> */}
-                    <li className="mb-2"><Link to="/create-school" className="hover:underline">Create School</Link></li>
-                    <li className="mb-2"><Link to="/add-student" className="hover:underline">Add Student</Link></li>
-                    <li className="mb-2"><Link to="/add-teacher" className="hover:underline">Add Teacher</Link></li>
-                    <li className="mb-2"><Link to="/logout" className="hover:underline">Log out</Link></li>
-                </ul>
-            </div>
-            <div className="w-3/4 p-8">
+        <div className="flex h-screen overflow-hidden">
+            <div className="flex h-screen overflow-hidden">
+                <div className="w-3/4 p-4 bg-gray-100 border-r border-gray-300">
+                    <div className="mb-6">
+                    <h1 className="text-3xl font-bold">School Owners Dashboard</h1>
+                    </div>
+                    <div className="mb-6">
+                    <ul>
+                        <li className="mb-2 text-black">
+                        <Link to="/create-school" className="hover:underline text-black border-b border-gray-300 ">Create School</Link>
+                        </li>
+                        <li className="mb-2 text-black">
+                        <Link to="/add-student" className="hover:underline border-b border-gray-300 text-black">Add Student</Link>
+                        </li>
+                        <li className="mb-2 text-black">
+                        <Link to="/add-teacher" className="hover:underline border-b border-gray-300 text-black">Add Teacher</Link>
+                        </li>
+                        <li className="mb-2 text-black">
+                        <Link to="/logout" className="hover:underline border-b border-gray-300 text-black">Log out</Link>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+                </div>
+            <div className="w-3/4 p-8 overflow-y-auto">
                 <Routes>
                     <Route path="/" element={
                         <>
