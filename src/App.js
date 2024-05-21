@@ -22,10 +22,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="courses" element={<Courses />} />
-          <Route path="Register" element={<Register />} />
-          <Route path="dailytask" element={<Dailytask />} />
+          <Route exact path='/login' element={<Login/>}/>
+          <Route path="/courses" element={<Courses />} />
+          <Route path="/Register" element={<Register />} />
+          <Route path="/dailytask" element={<Dailytask />} />
           <Route path="Login" element={<Login />} />
+<<<<<<< HEAD
           <Route path="StudentDash" element={<StudentDash />} />
           <Route path="SchoolOwnerDashboard/*" element={<SchoolOwnerDashboard />} />
           <Route path="add-student" element={<AddStudent />} />
@@ -35,6 +37,13 @@ function App() {
           <Route path="StudentData" element={<StudentData />} />
           <Route path="Attendance" element={<AttendanceTable />} />
           <Route path="logout" element={<Logout />} /> {/* Add the Logout route */}
+=======
+          <Route path="/StudentDash" element={<StudentDash />} />
+          <Route path="/SchoolOwnerDashboard/*" element={<SchoolOwnerDashboard />} />
+          <Route path="/add-student" element={<AddStudent />} />
+          <Route path="/add-teacher" element={<AddTeacher />} />
+          <Route path="/create-school" element={<CreateSchool />} />
+>>>>>>> origin/Esther
         
         </Route>
         {/* <Route path='login' element={<div> Login page</div>}/> */}
