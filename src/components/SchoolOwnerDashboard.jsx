@@ -38,7 +38,7 @@ function SchoolOwnerDashboard() {
             <div className="w-1/4 p-4 bg-gray-800 text-white min-h-screen">
                 <h2 className="text-2xl mb-4">Dashboard</h2>
                 <ul>
-                    <li className="mb-2"><Link to="/" className="hover:underline">Dashboard</Link></li>
+                    {/* <li className="mb-2"><Link to="/" className="hover:underline">Dashboard</Link></li> */}
                     <li className="mb-2"><Link to="/create-school" className="hover:underline">Create School</Link></li>
                     <li className="mb-2"><Link to="/add-student" className="hover:underline">Add Student</Link></li>
                     <li className="mb-2"><Link to="/add-teacher" className="hover:underline">Add Teacher</Link></li>

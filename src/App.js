@@ -10,6 +10,9 @@ import SchoolOwnerDashboard from './components/SchoolOwnerDashboard';
 import AddStudent from './components/AddStudent.jsx';
 import AddTeacher from './components/AddTeacher.jsx';
 import CreateSchool from './components/CreateSchool.jsx'
+import TeacherDashboard from './components/TeacherDashboard.jsx';
+import StudentData from './components/StudentData.jsx';
+import AttendanceTable from './components/Attendance.jsx'
 
 function App() {
   return (
@@ -26,6 +29,10 @@ function App() {
           <Route path="add-student" element={<AddStudent />} />
           <Route path="add-teacher" element={<AddTeacher />} />
           <Route path="create-school" element={<CreateSchool />} />
+          <Route path="TeacherDashboard" element={<TeacherDashboard />} />
+          <Route path="StudentData" element={<StudentData />} />
+          <Route path="Attendance" element={<AttendanceTable />} />
+          
         
         </Route>
         {/* <Route path='login' element={<div> Login page</div>}/> */}
