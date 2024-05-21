@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+<<<<<<< HEAD
+=======
+import * as XLSX from 'xlsx';
+>>>>>>> origin/Archibald/frontend
 
 const API_BASE_URL = 'https://virtulearn-backend.onrender.com';
 
@@ -20,9 +24,26 @@ const StudentData = () => {
     }
   };
 
+<<<<<<< HEAD
   return (
     <div className="student-data-container bg-gray-100 p-4">
       <h2>Students List</h2>
+=======
+  const exportToExcel = () => {
+    const filename = 'students.xlsx';
+    const header = ['ID', 'Name', 'Course', 'School', 'Resource'];
+    const data = students.map(student => [student.id, student.name, student.course.name, student.school.name, student.resource.name]);
+    const ws = XLSX.utils.aoa_to_sheet([header, ...data]);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Students');
+    XLSX.writeFile(wb, filename);
+  };
+
+  return (
+    <div className="student-data-container bg-gray-100 p-4">
+      <h2>Students List</h2>
+      <button onClick={exportToExcel} className="bg-blue-500 text-white py-2 px-4 rounded-md mb-4">Export Student Data to Excel</button>
+>>>>>>> origin/Archibald/frontend
       <table className="students-table w-full shadow rounded-md">
         <thead>
           <tr className="bg-gray-200 text-left text-sm font-medium">
@@ -49,4 +70,8 @@ const StudentData = () => {
   );
 };
 
+<<<<<<< HEAD
 export default StudentData;
+=======
+export default StudentData;
+>>>>>>> origin/Archibald/frontend

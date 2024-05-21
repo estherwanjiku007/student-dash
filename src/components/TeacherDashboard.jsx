@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Logout from './Logout';
 
 // Define the endpoints
 const ATTENDANCE_ENDPOINT = 'https://virtulearn-backend.onrender.com/attendances';
@@ -20,6 +21,7 @@ function TeacherDashboard() {
   const [attendanceData, setAttendanceData] = useState([]);
   const [studentsData, setStudentsData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,6 +48,11 @@ function TeacherDashboard() {
     return <div>Loading...</div>;
   }
 
+  const handleLogout = () => {
+    // Perform logout actions here (if any)
+    navigate('/logout');
+  };
+
   return (
     <div className="dashboard-container bg-gray-100">
       <div className="content-wrapper flex flex-row">
@@ -55,6 +62,7 @@ function TeacherDashboard() {
           <Card link="/studentData" title="Students Data" />
           <Card link="/teacher/details" title="Teacher's Details" />
           <Card link="/Attendance" title="Attendance Data" className="attendance-card" />
+          <button onClick={handleLogout} className="link text-blue-700 hover:text-blue-800">Log out</button>
         </div>
         <div className="main-content flex-grow p-4">
           <h1 className="welcome-header text-2xl font-bold mb-4">Welcome to your instructor Dashboard</h1>
@@ -71,6 +79,7 @@ function TeacherDashboard() {
             <Route path="resources" element={<div>Resources</div>} />
             <Route path="students-data" element={<div>Student Data</div>} />
             <Route path="details" element={<div>Teacher Details</div>} />
+            <Route path="logout" element={<Logout />} />
           </Routes>
         </div>
       </div>

@@ -1,27 +1,29 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import CreateSchool from './CreateSchool';
-import AddStudent from './AddStudent';
-import AddTeacher from './AddTeacher';
+import CreateSchool from './CreateSchool.jsx';
+import AddStudent from './AddStudent.jsx';
+import AddTeacher from './AddTeacher.jsx';
+import Logout from './Logout';
 
 function SchoolOwnerDashboard() {
-    const [schools, setSchools] = useState([]);
+  const [schools, setSchools] = useState([]);
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        fetchSchools();
-    }, []);
+  useEffect(() => {
+    fetchSchools();
+  }, []);
 
-    const fetchSchools = async () => {
-        try {
-            const response = await axios.get('https://virtulearn-backend.onrender.com/schools');
-            setSchools(response.data);
-        } catch (error) {
-            console.error('Error fetching schools:', error);
-        }
-    };
+  const fetchSchools = async () => {
+    try {
+      const response = await axios.get('https://virtulearn-backend.onrender.com/schools');
+      setSchools(response.data);
+    } catch (error) {
+      console.error('Error fetching schools:', error);
+    }
+  };
 
     const deleteSchool = async (schoolId) => {
         try {
@@ -31,7 +33,13 @@ function SchoolOwnerDashboard() {
             console.error('Error deleting school:', error);
             alert('Error deleting school');
         }
+
     };
+
+    const handleLogout = () => {
+        // Perform logout actions here (if any)
+        navigate('/logout');
+      };
 
     return (
         <div className="flex h-screen overflow-hidden">
@@ -95,8 +103,9 @@ function SchoolOwnerDashboard() {
                     <p>&copy; 2024 VirtuLearn Academy. All rights reserved.</p>
                 </div>
             </div>
-        </div>
-    );
+        
+    </div>
+  );
 }
 
 export default SchoolOwnerDashboard;
