@@ -6,18 +6,21 @@ import Register from './components/Register';
 import Dailytask from './components/Dailytask';
 import Login from './components/Login';
 import StudentDash from './components/StudentDash'
-
+import About from './components/About';
+import Contacts from "./components/Contacts"
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="courses" element={<Courses />} />
-          <Route path="Register" element={<Register />} />
-          <Route path="dailytask" element={<Dailytask />} />
-          <Route path="Login" element={<Login />} />
-          <Route path="StudentDash" element={<StudentDash />} />
+          <Route exact path="/about" element={<About/>}/>
+          <Route exact path="/contacts" element={<Contacts/>}/>
+          <Route path="/courses" element={<Courses />} />
+          <Route path="/Register" element={<Register />} />
+          <Route path="/dailytask" element={<Dailytask />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/StudentDash" element={<StudentDash />} />
         
         </Route>
         {/* <Route path='login' element={<div> Login page</div>}/> */}
