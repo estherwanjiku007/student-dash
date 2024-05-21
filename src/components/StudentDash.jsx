@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {useRef} from 'react-router-dom'
+import axios from 'axios';
 
 const API_BASE_URL = 'https://virtulearn-backend.onrender.com';
 
@@ -21,9 +21,8 @@ const StudentDash = () => {
 
   const fetchCourses = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/courses`);
-      const data = await response.json();
-      setCourses(data);
+      const response = await axios.get(`${API_BASE_URL}/courses`);
+      setCourses(response.data);
     } catch (error) {
       console.error('Error fetching courses:', error);
     }
@@ -31,9 +30,8 @@ const StudentDash = () => {
 
   const fetchCourseDetails = async (courseId) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/courses/${courseId}`);
-      const data = await response.json();
-      setSelectedCourse(data);
+      const response = await axios.get(`${API_BASE_URL}/courses/${courseId}`);
+      setSelectedCourse(response.data);
     } catch (error) {
       console.error('Error fetching course details:', error);
     }
@@ -41,9 +39,8 @@ const StudentDash = () => {
 
   const fetchChats = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/coursechats`);
-      const data = await response.json();
-      setChatMessages(data);
+      const response = await axios.get(`${API_BASE_URL}/coursechats`);
+      setChatMessages(response.data);
     } catch (error) {
       console.error('Error fetching chats:', error);
     }
@@ -51,9 +48,8 @@ const StudentDash = () => {
 
   const fetchStudents = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/students`);
-      const data = await response.json();
-      setStudents(data);
+      const response = await axios.get(`${API_BASE_URL}/students`);
+      setStudents(response.data);
     } catch (error) {
       console.error('Error fetching students:', error);
     }
@@ -62,9 +58,7 @@ const StudentDash = () => {
   const deleteCourse = async (courseId, event) => {
     event.stopPropagation();
     try {
-      await fetch(`${API_BASE_URL}/courses/${courseId}`, {
-        method: 'DELETE'
-      });
+      await axios.delete(`${API_BASE_URL}/courses/${courseId}`);
       setCourses(courses.filter(course => course.id !== courseId));
     } catch (error) {
       console.error('Error deleting course:', error);
@@ -84,12 +78,10 @@ const StudentDash = () => {
       timestamp: new Date().toISOString()
     };
     try {
-      await fetch(`${API_BASE_URL}/coursechats`, {
-        method: 'POST',
+      await axios.post(`${API_BASE_URL}/coursechats`, messageData, {
         headers: {
           'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(messageData)
+        }
       });
       setNewMessage('');
       fetchChats();
@@ -100,9 +92,7 @@ const StudentDash = () => {
 
   const deleteChat = async (chatId) => {
     try {
-      await fetch(`${API_BASE_URL}/coursechats/${chatId}`, {
-        method: 'DELETE'
-      });
+      await axios.delete(`${API_BASE_URL}/coursechats/${chatId}`);
       setChatMessages(chatMessages.filter(chat => chat.id !== chatId));
     } catch (error) {
       console.error('Error deleting chat message:', error);
@@ -116,7 +106,11 @@ const StudentDash = () => {
   const handleExamsClick = () => {
     navigate('/exams');
   };
-   
+
+  const handleLogout = () => {
+    navigate('/logout');
+  };
+
   return (
     <div className="flex flex-col md:flex-row h-screen">
       <div className="w-full md:w-1/4 p-4 border-r border-gray-300 overflow-y-auto">
@@ -131,10 +125,13 @@ const StudentDash = () => {
             <li className="mb-2 text-black">
               <button className="hover:underline border-b border-gray-300" onClick={handleExamsClick}>Exams</button>
             </li>
+            <li className="mb-2 text-black">
+              <button onClick={handleLogout} className="hover:underline border-b border-gray-300">Log out</button>
+            </li>
           </ul>
         </div>
       </div>
-  
+
       <div className="w-full md:w-3/4 p-4 overflow-y-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="courses-container">
@@ -154,7 +151,7 @@ const StudentDash = () => {
               </div>
             ))}
           </div>
-  
+
           {selectedCourse && (
             <div className="course-details p-4 bg-white shadow-md rounded-md">
               <h2 className="text-2xl font-bold mb-4">{selectedCourse.name}</h2>
@@ -174,7 +171,7 @@ const StudentDash = () => {
             </div>
           )}
         </div>
-  
+
         <div className="chat-app mt-6">
           <h2 className="text-2xl font-bold mb-4">Course Chat</h2>
           <div className="chat-messages mb-4 p-4 bg-white shadow-md rounded-md h-64 overflow-y-scroll">
@@ -219,9 +216,6 @@ const StudentDash = () => {
       </div>
     </div>
   );
-  
-  
- 
 };
 
 export default StudentDash;

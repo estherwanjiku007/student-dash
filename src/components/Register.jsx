@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {useRef} from 'react-router-dom'
 
 
@@ -315,11 +316,14 @@ function Register() {
                 <div>
                     {error && <p className="text-red-500">{error}</p>}
                 </div>
-                <div>
-                    <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Register</button>
+                <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-x-2">
+                    <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Register</button><br/>
+                    <p className="text-center text-gray-600">
+                        Already have an account? <Link to="/login" className="text-blue-500">Login here</Link>
+                    </p>
                 </div>
             </form>
-        </div>
+        </div>    
     );
 }
 

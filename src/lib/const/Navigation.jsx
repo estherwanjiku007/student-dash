@@ -44,10 +44,10 @@ export const Dashboard_bottom_links = [
     path: '/support',
     icon: <HiOutlineQuestionMarkCircle />
   },
-  {
-    key: 'logout',
-    label: 'Logout',
-    path: '/logout',
-    icon: <HiOutlineLogout />
-  }
+  // {
+  //   key: 'logout',
+  //   label: 'Logout',
+  //   path: '/logout',
+  //   icon: <HiOutlineLogout />
+  // }
 ];
