@@ -6,6 +6,7 @@ import {
 } from "react-icons/hi"; // Import specific icons from the react-icons/hi library
 import { Popover, Transition, Menu, MenuItem } from "@headlessui/react"; // Import Popover and Transition components from @headlessui/react
 import classNames from "classnames";
+import {useRef} from 'react-router-dom'
 
 // Define and export the Header component
 export default function Header() {

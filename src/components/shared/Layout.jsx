@@ -2,6 +2,7 @@ import React from 'react'; // Importing React library
 import { Outlet } from 'react-router-dom'; // Importing Outlet component from react-router-dom for nested routing
 import Sidebar from './Sidebar'; // Importing Sidebar component
 import Header from './Header'; // Importing Header component
+import {useRef} from 'react-router-dom'
 
 // Defining a functional component named Layout
 export default function Layout() {

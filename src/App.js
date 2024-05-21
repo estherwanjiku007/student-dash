@@ -6,6 +6,10 @@ import Register from './components/Register';
 import Dailytask from './components/Dailytask';
 import Login from './components/Login';
 import StudentDash from './components/StudentDash'
+import SchoolOwnerDashboard from './components/SchoolOwnerDashboard';
+import AddStudent from './components/AddStudent.jsx';
+import AddTeacher from './components/AddTeacher.jsx';
+import CreateSchool from './components/CreateSchool.jsx'
 
 function App() {
   return (
@@ -18,6 +22,10 @@ function App() {
           <Route path="dailytask" element={<Dailytask />} />
           <Route path="Login" element={<Login />} />
           <Route path="StudentDash" element={<StudentDash />} />
+          <Route path="SchoolOwnerDashboard/*" element={<SchoolOwnerDashboard />} />
+          <Route path="add-student" element={<AddStudent />} />
+          <Route path="add-teacher" element={<AddTeacher />} />
+          <Route path="create-school" element={<CreateSchool />} />
         
         </Route>
         {/* <Route path='login' element={<div> Login page</div>}/> */}
