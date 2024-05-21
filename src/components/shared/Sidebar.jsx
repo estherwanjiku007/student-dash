@@ -1,6 +1,7 @@
 import classNames from "classnames"; // Importing the 'classnames' library for conditionally combining class names
 import React from "react"; // Importing React library
-import Logo from "../../assets/notMoringa.png"; // Importing the logo image from assets
+import Logo from "../assets/notMoringa.png"; // Importing the logo image from assets
+import {useRef} from 'react-router-dom'
 import { Link, useLocation } from "react-router-dom"; // Importing 'Link' and 'useLocation' from 'react-router-dom' for navigation and location handling
 import {
   DashBoard_Sidebar_Links,

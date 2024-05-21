@@ -13,9 +13,11 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "autoprefixer": "^10.4.19",
-    "axios": "^1.7.0",
+    "axios": "^1.7.1",
+    "browserify-zlib": "^0.2.0",
     "classnames": "^2.5.1",
-    "fortawesome": "^0.0.1-security",
+    "formik": "^2.4.6",
+    "https-browserify": "^1.0.0",
     "postcss-cli": "^11.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -23,9 +25,13 @@
     "react-icons": "^5.2.1",
     "react-router-dom": "^6.23.1",
     "react-scripts": "5.0.1",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
     "switch": "^0.0.0",
     "tailwindcss": "^3.4.3",
-    "web-vitals": "^2.1.4"
+    "util": "^0.12.5",
+    "web-vitals": "^2.1.4",
+    "yup": "^1.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
