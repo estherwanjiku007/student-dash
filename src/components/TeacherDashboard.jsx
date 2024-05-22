@@ -57,7 +57,7 @@ function TeacherDashboard() {
     <div className="dashboard-container bg-gray-100">
       <div className="content-wrapper flex flex-row">
         <div className="sidebar bg-white shadow rounded-md p-4 flex flex-col gap-4">
-          <Card link="/teacher/student-attendance" title="Student Attendance" />
+          <Card link="/addattendance" title="Student Attendance" />
           <Card link="/upload" title="Resources" />
           <Card link="/studentData" title="Students Data" />
           <Card link="/teacher/details" title="Teacher's Details" />
@@ -75,8 +75,8 @@ function TeacherDashboard() {
             ))}
           </div>
           <Routes>
-            <Route path="student-attendance" element={<div>Student Attendance</div>} />
-            <Route path="resources" element={<div>Resources</div>} />
+            <Route path="addattendance" element={<div>Student Attendance</div>} />
+            <Route path="upload" element={<div>Resources</div>} />
             <Route path="students-data" element={<div>Student Data</div>} />
             <Route path="details" element={<div>Teacher Details</div>} />
             <Route path="logout" element={<Logout />} />
