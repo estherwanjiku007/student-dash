@@ -17,9 +17,8 @@ import StudentData from './components/StudentData.jsx';
 import AttendanceTable from './components/Attendance.jsx';
 import Quizzes from './components/Quiz.jsx'
 import FileUpload from './components/FileUpload.jsx'
-//import AuthContext from './components/AuthCotext.jsx'
-//import Logout from './components/Logout.jsx'
-
+import Contacts from "./components/Contacts.jsx"
+import About from "./components/About.jsx"
 function App() {
   
   return (
@@ -28,6 +27,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path='About' element={<About/>}/>
+          <Route path='Contacts' element={<Contacts/>}/>
           <Route path="courses" element={<Courses />} />
           <Route path="Register" element={<Register />} />
           <Route path="dailytask" element={<Dailytask />} />

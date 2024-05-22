@@ -7,8 +7,8 @@ const iconStyles = { color: '#fff', size: '2em' };
 
 function Contacts() {
   return (
-    <div class="flex flex-col min-h-screen">
-      <div class="bg-gray-800 text-white p-0.5 text-center transition-colors duration-300 ease-in-out">
+    <div class="flex flex-col min-h-screen bg-white">
+      <div class="flex-1 p-5 max-w-3xl mx-auto bg-gray-100 rounded-lg">
         <header class="text-center py-5">
           <h1 className="m-0 text-gray-900">VirtuLearn Academy</h1>
           <p class="m-0 text-gray-600">Your gateway to quality online education</p>
@@ -67,21 +67,21 @@ function Contacts() {
           </p>
         </section>
       </div>
-      <footer className="footer">
+      <footer className="bg-gray-800 text-white p-0.5 text-center transition duration-300 ease-in-out">
         <div className="contact-us">
           <h4>Contact Us</h4>
         </div>
         <div className="socials">
-          <a class="text-blue-600 hover:underline"   href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
+          <a class="mx-2.5 text-white no-underline" href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faTwitter} style={iconStyles} />
           </a>
-          <a className="text-blue-600 hover:underline"  href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
+          <a className='mx-2.5 text-white no-underline'  href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faInstagram} style={iconStyles} />
           </a>
-          <a className="text-blue-600 hover:underline"  href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+          <a className='mx-2.5 text-white no-underline'  href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faFacebookF} style={iconStyles} />
           </a>
-          <a class="text-blue-600 hover:underline"  href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
+          <a className='mx-2.5 text-white no-underline' href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faLinkedin} style={iconStyles} />
           </a>
         </div>
