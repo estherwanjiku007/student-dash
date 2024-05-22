@@ -1,19 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from './AuthContext';
 
 const Logout = () => {
   const navigate = useNavigate();
+  const { logout } = useContext(AuthContext);
 
   useEffect(() => {
-    const logout = () => {
-      // Clear any stored user data (e.g., localStorage, sessionStorage)
-      localStorage.removeItem('userToken');
-      // Navigate to the login page
+    const performLogout = () => {
+      localStorage.removeItem('token');
+      logout();
       navigate('/login');
     };
 
-    logout();
-  }, [navigate]);
+    performLogout();
+  }, [logout, navigate]);
 
   return (
     <div>

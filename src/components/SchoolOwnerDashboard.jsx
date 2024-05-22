@@ -6,7 +6,7 @@ import axios from 'axios';
 import CreateSchool from './CreateSchool.jsx';
 import AddStudent from './AddStudent.jsx';
 import AddTeacher from './AddTeacher.jsx';
-import Logout from './Logout';
+import Logout from './Logout.jsx';
 
 function SchoolOwnerDashboard() {
   const [schools, setSchools] = useState([]);
