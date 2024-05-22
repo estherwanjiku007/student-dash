@@ -112,74 +112,74 @@ const StudentDash = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-screen">
-      <div className="w-full md:w-1/4 p-4 border-r border-gray-300 overflow-y-auto">
-        <div className="mb-6">
-          <h1 className="text-3xl font-bold">Student Dashboard</h1>
-        </div>
-        <div className="mb-6">
-          <ul>
-            <li className="mb-2 text-black">
-              <button className="hover:underline border-b border-gray-300" onClick={handleAssessmentsClick}>Assessments</button>
+    <div className="flex flex-col md:flex-row min-h-screen bg-gray-50 text-gray-800 overflow-hidden">
+      <aside className="w-full md:w-1/4 p-4 bg-white border-r border-gray-200 overflow-y-auto h-screen">
+        <h1 className="text-4xl font-extrabold mb-8">Student Dashboard</h1>
+        <nav className="mb-10">
+          <ul className="space-y-4">
+            <li>
+              <button className="w-full text-left font-semibold py-2 px-4 rounded-lg transition-colors duration-200 hover:bg-blue-100 hover:text-blue-700" onClick={handleAssessmentsClick}>Assessments</button>
             </li>
-            <li className="mb-2 text-black">
-              <button className="hover:underline border-b border-gray-300" onClick={handleExamsClick}>Exams</button>
+            <li>
+              <button className="w-full text-left font-semibold py-2 px-4 rounded-lg transition-colors duration-200 hover:bg-blue-100 hover:text-blue-700" onClick={handleExamsClick}>Exams</button>
             </li>
-            <li className="mb-2 text-black">
-              <button onClick={handleLogout} className="hover:underline border-b border-gray-300">Log out</button>
+            <li>
+              <button className="w-full text-left font-semibold py-2 px-4 rounded-lg transition-colors duration-200 hover:bg-red-100 hover:text-red-700" onClick={handleLogout}>Log out</button>
             </li>
           </ul>
-        </div>
-      </div>
+        </nav>
+      </aside>
 
-      <div className="w-full md:w-3/4 p-4 overflow-y-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="courses-container">
+      <main className="flex-1 p-6 overflow-y-auto h-screen">
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="courses-container space-y-6">
             {courses.map(course => (
-              <div
+              <article
                 key={course.id}
-                className="card p-4 mb-4 bg-white shadow-md rounded-md cursor-pointer"
+                className="card bg-blue-50 p-2 shadow-lg rounded-xl cursor-pointer hover:shadow-2xl transition-shadow duration-300"
                 onClick={() => fetchCourseDetails(course.id)}
               >
-                <h3 className="text-xl font-bold">{course.name}</h3>
+                <h3 className="text-2xl font-bold mb-3">{course.name}</h3>
                 <button
-                  className="mt-2 text-sm text-red-500 hover:text-red-700"
+                  className="text-red-600 hover:text-red-800 font-medium"
                   onClick={(e) => deleteCourse(course.id, e)}
                 >
                   Delete
                 </button>
-              </div>
+              </article>
             ))}
           </div>
 
           {selectedCourse && (
-            <div className="course-details p-4 bg-white shadow-md rounded-md">
-              <h2 className="text-2xl font-bold mb-4">{selectedCourse.name}</h2>
-              <p className="mb-4">{selectedCourse.body}</p>
-              <h3 className="text-xl font-bold mb-2">Resources:</h3>
-              {selectedCourse.resources && selectedCourse.resources.length > 0 ? (
-                <ul className="list-disc list-inside">
-                  {selectedCourse.resources.map(resource => (
-                    <li key={resource.id}>
-                      <strong>{resource.name}</strong> ({resource.type}): <a href={resource.url} className="text-blue-500 hover:underline">{resource.url}</a>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p>No resources available.</p>
-              )}
-            </div>
+            <article className="course-details bg-white p-6 shadow-lg rounded-xl">
+              <h2 className="text-3xl font-bold mb-6">{selectedCourse.name}</h2>
+              <p className="mb-6">{selectedCourse.body}</p>
+              <div>
+                <h3 className="text-xl font-bold mb-4">Resources:</h3>
+                {selectedCourse.resources && selectedCourse.resources.length > 0 ? (
+                  <ul className="list-disc list-inside space-y-2">
+                    {selectedCourse.resources.map(resource => (
+                      <li key={resource.id} className="font-medium">
+                        <strong>{resource.name}</strong> ({resource.type}): <a href={resource.url} className="text-blue-600 hover:underline">{resource.url}</a>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-gray-600">No resources available.</p>
+                )}
+              </div>
+            </article>
           )}
-        </div>
+        </section>
 
-        <div className="chat-app mt-6">
-          <h2 className="text-2xl font-bold mb-4">Course Chat</h2>
-          <div className="chat-messages mb-4 p-4 bg-white shadow-md rounded-md h-64 overflow-y-scroll">
+        <section className="chat-app mt-10">
+          <h2 className="text-3xl font-bold mb-6">Course Chat</h2>
+          <div className="chat-messages p-6 bg-white shadow-lg rounded-xl h-72 overflow-y-auto mb-6">
             {chatMessages.map(chat => (
-              <div key={chat.id} className="chat-message mb-2 p-2 bg-gray-100 rounded-md">
-                <span>{chat.message}</span>
+              <div key={chat.id} className="chat-message mb-4 p-4 bg-blue-100 rounded-lg">
+                <span className="font-medium">{chat.message}</span>
                 <button
-                  className="ml-2 text-sm text-red-500 hover:text-red-700"
+                  className="ml-4 text-red-600 hover:text-red-800"
                   onClick={() => deleteChat(chat.id)}
                 >
                   Delete
@@ -187,33 +187,35 @@ const StudentDash = () => {
               </div>
             ))}
           </div>
-          <select
-            value={selectedStudent}
-            onChange={(e) => setSelectedStudent(e.target.value)}
-            className="mb-2 p-2 border border-gray-300 rounded-md"
-          >
-            <option value="">Select student</option>
-            {students.map(student => (
-              <option key={student.id} value={student.id}>
-                {student.name}
-              </option>
-            ))}
-          </select>
-          <input
-            type="text"
-            value={newMessage}
-            onChange={(e) => setNewMessage(e.target.value)}
-            className="mb-2 p-2 border border-gray-300 rounded-md w-full"
-            placeholder="Type a message..."
-          />
-          <button
-            onClick={sendMessage}
-            className="p-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
-          >
-            Send
-          </button>
-        </div>
-      </div>
+          <div className="flex gap-4">
+            <select
+              value={selectedStudent}
+              onChange={(e) => setSelectedStudent(e.target.value)}
+              className="flex-1 p-4 border border-gray-300 rounded-lg"
+            >
+              <option value="">Select student</option>
+              {students.map(student => (
+                <option key={student.id} value={student.id}>
+                  {student.name}
+                </option>
+              ))}
+            </select>
+            <input
+              type="text"
+              value={newMessage}
+              onChange={(e) => setNewMessage(e.target.value)}
+              className="flex-1 p-4 border border-gray-300 rounded-lg"
+              placeholder="Type a message..."
+            />
+            <button
+              onClick={sendMessage}
+              className="p-4 bg-blue-600 text-white rounded-lg hover:bg-blue-800 transition-colors duration-200"
+            >
+              Send
+            </button>
+          </div>
+        </section>
+      </main>
     </div>
   );
 };

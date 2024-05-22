@@ -16,7 +16,7 @@ const linkClasses =
 export default function Sidebar() {
   return (
     // Sidebar container with styling
-    <div className="bg-gray-900 w-60 p-3 flex flex-col text-white">
+    <div className="fixed-sidebar bg-gray-900 w-60 p-3 flex flex-col text-white">
       {/* Header section with logo and title */}
       <div className="flex items center gap-2 px-1 py-3">
         <img

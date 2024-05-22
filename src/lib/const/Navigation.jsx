@@ -1,4 +1,4 @@
-import { HiOutlineLogout, HiCollection, HiLogin, HiHome, HiOutlineQuestionMarkCircle } from 'react-icons/hi';
+import { HiOutlineLogout, HiCollection, HiLogout, HiLogin, HiHome, HiOutlineQuestionMarkCircle } from 'react-icons/hi';
 import { IoIosCall, IoMdSettings } from 'react-icons/io';
 
 // Sidebar links
@@ -22,12 +22,13 @@ export const DashBoard_Sidebar_Links = [
     path: '/contacts',
     icon: <IoIosCall />
   },
-  {
-    key: 'login',
-    label: 'Login',
-    path: '/login',
-    icon: <HiLogin />
-  }
+   {
+     key: 'login',
+     label: 'Login',
+     path: '/login',
+     icon: <HiLogin />
+   },
+  
 ];
 
 // Bottom links

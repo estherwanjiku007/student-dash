@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, {useState} from 'react'
 import Layout from './components/shared/Layout';
 import Home from './components/Home';
 import Courses from './components/Courses';
@@ -16,9 +17,13 @@ import StudentData from './components/StudentData.jsx';
 import AttendanceTable from './components/Attendance.jsx';
 import Quizzes from './components/Quiz.jsx'
 import FileUpload from './components/FileUpload.jsx'
+//import AuthContext from './components/AuthCotext.jsx'
+//import Logout from './components/Logout.jsx'
 
 function App() {
+  
   return (
+    
     <Router>
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -38,12 +43,12 @@ function App() {
           <Route path="Attendance" element={<AttendanceTable />} />
           <Route path="Quiz" element={<Quizzes />} />
           <Route path="upload" element={<FileUpload />} />
-          
-        
+          {/* <Route path="Logout" element={<Logout />} /> */}
         </Route>
         {/* <Route path='login' element={<div> Login page</div>}/> */}
       </Routes>
     </Router>
+    
   );
 }
 

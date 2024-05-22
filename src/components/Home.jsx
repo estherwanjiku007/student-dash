@@ -4,11 +4,11 @@ import secondImg from './assets/secondimg_1_1200x780.jpg';
 import thirdImg from './assets/thirdimg_1200x780.jpg';
 import fourthImg from './assets/fourthimg_1200x780.jpg';
 import { useNavigate } from 'react-router-dom';
-import {useRef} from 'react-router-dom'
+//import {useRef} from 'react-router-dom'
 
 const programs = ["Software-Engineer", "Cyber-Security", "Data Science", "Computer Science"];
 
-function Home() {
+function Home({ handleLogin }) {
     const slideshow = [
         { src: firstImg, alt: "Software Engineering" },
         { src: secondImg, alt: "Data Science" },
@@ -32,6 +32,7 @@ function Home() {
 
     const handleNavigate = () => {
         navigate('/Register');
+
     };
 
     return (
