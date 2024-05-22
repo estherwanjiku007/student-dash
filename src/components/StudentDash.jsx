@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import ScheduleMeeting from './ScheduleMeeting'; 
 
 const API_BASE_URL = 'https://virtulearn-backend.onrender.com';
 
@@ -12,6 +13,7 @@ const StudentDash = () => {
   const [newMessage, setNewMessage] = useState('');
   const [students, setStudents] = useState([]);
   const [selectedStudent, setSelectedStudent] = useState('');
+  const [showScheduleMeeting, setShowScheduleMeeting] = useState(false); // State for showing ScheduleMeeting
 
   useEffect(() => {
     fetchCourses();
@@ -126,6 +128,9 @@ const StudentDash = () => {
               <button className="hover:underline border-b border-gray-300" onClick={handleExamsClick}>Exams</button>
             </li>
             <li className="mb-2 text-black">
+              <button className="hover:underline border-b border-gray-300" onClick={() => setShowScheduleMeeting(true)}>Schedule Meeting</button>
+            </li>
+            <li className="mb-2 text-black">
               <button onClick={handleLogout} className="hover:underline border-b border-gray-300">Log out</button>
             </li>
           </ul>
@@ -133,86 +138,92 @@ const StudentDash = () => {
       </div>
 
       <div className="w-full md:w-3/4 p-4 overflow-y-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="courses-container">
-            {courses.map(course => (
-              <div
-                key={course.id}
-                className="card p-4 mb-4 bg-white shadow-md rounded-md cursor-pointer"
-                onClick={() => fetchCourseDetails(course.id)}
-              >
-                <h3 className="text-xl font-bold">{course.name}</h3>
-                <button
-                  className="mt-2 text-sm text-red-500 hover:text-red-700"
-                  onClick={(e) => deleteCourse(course.id, e)}
-                >
-                  Delete
-                </button>
+        {showScheduleMeeting ? (
+          <ScheduleMeeting />
+        ) : (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="courses-container">
+                {courses.map(course => (
+                  <div
+                    key={course.id}
+                    className="card p-4 mb-4 bg-white shadow-md rounded-md cursor-pointer"
+                    onClick={() => fetchCourseDetails(course.id)}
+                  >
+                    <h3 className="text-xl font-bold">{course.name}</h3>
+                    <button
+                      className="mt-2 text-sm text-red-500 hover:text-red-700"
+                      onClick={(e) => deleteCourse(course.id, e)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
 
-          {selectedCourse && (
-            <div className="course-details p-4 bg-white shadow-md rounded-md">
-              <h2 className="text-2xl font-bold mb-4">{selectedCourse.name}</h2>
-              <p className="mb-4">{selectedCourse.body}</p>
-              <h3 className="text-xl font-bold mb-2">Resources:</h3>
-              {selectedCourse.resources && selectedCourse.resources.length > 0 ? (
-                <ul className="list-disc list-inside">
-                  {selectedCourse.resources.map(resource => (
-                    <li key={resource.id}>
-                      <strong>{resource.name}</strong> ({resource.type}): <a href={resource.url} className="text-blue-500 hover:underline">{resource.url}</a>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p>No resources available.</p>
+              {selectedCourse && (
+                <div className="course-details p-4 bg-white shadow-md rounded-md">
+                  <h2 className="text-2xl font-bold mb-4">{selectedCourse.name}</h2>
+                  <p className="mb-4">{selectedCourse.body}</p>
+                  <h3 className="text-xl font-bold mb-2">Resources:</h3>
+                  {selectedCourse.resources && selectedCourse.resources.length > 0 ? (
+                    <ul className="list-disc list-inside">
+                      {selectedCourse.resources.map(resource => (
+                        <li key={resource.id}>
+                          <strong>{resource.name}</strong> ({resource.type}): <a href={resource.url} className="text-blue-500 hover:underline">{resource.url}</a>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p>No resources available.</p>
+                  )}
+                </div>
               )}
             </div>
-          )}
-        </div>
 
-        <div className="chat-app mt-6">
-          <h2 className="text-2xl font-bold mb-4">Course Chat</h2>
-          <div className="chat-messages mb-4 p-4 bg-white shadow-md rounded-md h-64 overflow-y-scroll">
-            {chatMessages.map(chat => (
-              <div key={chat.id} className="chat-message mb-2 p-2 bg-gray-100 rounded-md">
-                <span>{chat.message}</span>
-                <button
-                  className="ml-2 text-sm text-red-500 hover:text-red-700"
-                  onClick={() => deleteChat(chat.id)}
-                >
-                  Delete
-                </button>
+            <div className="chat-app mt-6">
+              <h2 className="text-2xl font-bold mb-4">Course Chat</h2>
+              <div className="chat-messages mb-4 p-4 bg-white shadow-md rounded-md h-64 overflow-y-scroll">
+                {chatMessages.map(chat => (
+                  <div key={chat.id} className="chat-message mb-2 p-2 bg-gray-100 rounded-md">
+                    <span>{chat.message}</span>
+                    <button
+                      className="ml-2 text-sm text-red-500 hover:text-red-700"
+                      onClick={() => deleteChat(chat.id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-          <select
-            value={selectedStudent}
-            onChange={(e) => setSelectedStudent(e.target.value)}
-            className="mb-2 p-2 border border-gray-300 rounded-md"
-          >
-            <option value="">Select student</option>
-            {students.map(student => (
-              <option key={student.id} value={student.id}>
-                {student.name}
-              </option>
-            ))}
-          </select>
-          <input
-            type="text"
-            value={newMessage}
-            onChange={(e) => setNewMessage(e.target.value)}
-            className="mb-2 p-2 border border-gray-300 rounded-md w-full"
-            placeholder="Type a message..."
-          />
-          <button
-            onClick={sendMessage}
-            className="p-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
-          >
-            Send
-          </button>
-        </div>
+              <select
+                value={selectedStudent}
+                onChange={(e) => setSelectedStudent(e.target.value)}
+                className="mb-2 p-2 border border-gray-300 rounded-md"
+              >
+                <option value="">Select student</option>
+                {students.map(student => (
+                  <option key={student.id} value={student.id}>
+                    {student.name}
+                  </option>
+                ))}
+              </select>
+              <input
+                type="text"
+                value={newMessage}
+                onChange={(e) => setNewMessage(e.target.value)}
+                className="mb-2 p-2 border border-gray-300 rounded-md w-full"
+                placeholder="Type a message..."
+              />
+              <button
+                onClick={sendMessage}
+                className="p-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
+              >
+                Send
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

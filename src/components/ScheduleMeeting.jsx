@@ -10,7 +10,7 @@ function ScheduleMeeting() {
     event.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3000/create-meeting', {
+      const response = await axios.post('http://localhost:5000/create-meeting', {
         topic,
         startTime,
         duration,
