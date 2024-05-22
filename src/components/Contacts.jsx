@@ -7,8 +7,8 @@ const iconStyles = { color: '#fff', size: '2em' };
 
 function Contacts() {
   return (
-    <div class="flex flex-col min-h-screen">
-      <div class="bg-gray-800 text-white p-0.5 text-center transition-colors duration-300 ease-in-out">
+    <div class="flex flex-col min-h-screen bg-white">
+      <div class="flex-1 p-5 max-w-3xl mx-auto bg-gray-100 rounded-lg">
         <header class="text-center py-5">
           <h1 className="m-0 text-gray-900">VirtuLearn Academy</h1>
           <p class="m-0 text-gray-600">Your gateway to quality online education</p>

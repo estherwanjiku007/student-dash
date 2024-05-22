@@ -8,8 +8,8 @@ import cyberSecurityImage from './assets/CyberSecurityImage.png';
 
 function About() {
     return (
-        <div className="flex flex-col items-center min-h-screen bg-contain bg-center bg-repeat-x p-5 text-[#0b0505]">
-            <div class="text-center max-w-800">
+        <div className="absolute flex flex-col items-center min-h-screen bg-contain bg-center bg-repeat-x p-5 text-[#0b0505] justify-center">
+            <div className="text-center max-w-custom mx-auto">
                 <h2>About VirtuLearn Academy</h2>
                 <p className="text-center max-w-[800px]">
                     VirtuLearn Academy is a virtual learning platform dedicated to providing high-quality education 
@@ -27,32 +27,32 @@ function About() {
                 </p>
                 <h3>Our Courses</h3>
                 <div className="flex flex-wrap justify-center">
-                    <div className="course">
-                        <img src={programmingImage} alt="Programming and Software Development" />
+                    <div class="w-[calc(50%-20px)] m-2 flex items-center">
+                        <img className="w-[150px] h-auto mr-5"src={programmingImage} alt="Programming and Software Development" />
                         <div>
-                            <h4>Programming and Software Development</h4>
-                            <p>Learn programming languages and software development techniques to build applications and websites.</p>
+                            <h4 class="text-xl mb-2">Programming and Software Development</h4>
+                            <p class="text-base leading-relaxed">Learn programming languages and software development techniques to build applications and websites.</p>
                         </div>
                     </div>
                     <div className="w-[calc(50%-20px)] m-2 flex items-center">
-                        <img src={dataScienceImage} alt="Data Science and Machine Learning" />
+                        <img className="w-[150px] h-auto mr-5"src={dataScienceImage} alt="Data Science and Machine Learning" />
                         <div>
-                            <h4>Data Science and Machine Learning</h4>
-                            <p>Explore data analysis, machine learning algorithms, and data visualization tools.</p>
+                            <h4 class="text-xl mb-2">Data Science and Machine Learning</h4>
+                            <p class="text-base leading-relaxed">Explore data analysis, machine learning algorithms, and data visualization tools.</p>
                         </div>
                     </div>
                     <div className="w-[calc(50%-20px)] m-2 flex items-center">
-                        <img src={cyberSecurityImage} alt="Cyber Security" />
+                        <img className="w-[150px] h-auto mr-5"src={cyberSecurityImage} alt="Cyber Security" />
                         <div>
-                            <h4>Cyber Security</h4>
-                            <p>Learn about cybersecurity threats, protection techniques, and ethical hacking.</p>
+                            <h4 class="text-xl mb-2">Cyber Security</h4>
+                            <p class="text-base leading-relaxed">Learn about cybersecurity threats, protection techniques, and ethical hacking.</p>
                         </div>
                     </div>
                     <div className="w-[calc(50%-20px)] m-2 flex items-center">
-                        <img src={mobileImage} alt="Mobile Application Development" />
+                        <img className="w-[150px] h-auto mr-5"src={mobileImage} alt="Mobile Application Development" />
                         <div>
-                            <h4>Mobile Application Development</h4>
-                            <p>Master mobile app development for iOS and Android platforms using industry-standard tools and technologies.</p>
+                            <h4 class="text-xl mb-2">Mobile Application Development</h4>
+                            <p class="text-base leading-relaxed">Master mobile app development for iOS and Android platforms using industry-standard tools and technologies.</p>
                         </div>
                     </div>
                 </div>
