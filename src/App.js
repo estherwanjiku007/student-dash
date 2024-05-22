@@ -13,9 +13,7 @@ import CreateSchool from './components/CreateSchool.jsx'
 import TeacherDashboard from './components/TeacherDashboard.jsx';
 import StudentData from './components/StudentData.jsx';
 import AttendanceTable from './components/Attendance.jsx';
-import Quizzes from './components/Quiz.jsx';
-import Logout from './components/Logout'; // Import the Logout component
-
+import Quizzes from './components/Quiz.jsx'
 
 function App() {
   return (
@@ -23,12 +21,19 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route exact path='/login' element={<Login/>}/>
-          <Route path="/courses" element={<Courses />} />
-          <Route path="/Register" element={<Register />} />
-          <Route path="/dailytask" element={<Dailytask />} />
+          <Route path="courses" element={<Courses />} />
+          <Route path="Register" element={<Register />} />
+          <Route path="dailytask" element={<Dailytask />} />
           <Route path="Login" element={<Login />} />
-
+          <Route path="StudentDash" element={<StudentDash />} />
+          <Route path="SchoolOwnerDashboard/*" element={<SchoolOwnerDashboard />} />
+          <Route path="add-student" element={<AddStudent />} />
+          <Route path="add-teacher" element={<AddTeacher />} />
+          <Route path="create-school" element={<CreateSchool />} />
+          <Route path="TeacherDashboard" element={<TeacherDashboard />} />
+          <Route path="StudentData" element={<StudentData />} />
+          <Route path="Attendance" element={<AttendanceTable />} />
+          <Route path="Quiz" element={<Quizzes />} />
           
         
         </Route>

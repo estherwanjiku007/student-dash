@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -10,13 +11,24 @@ const Quizzes = () => {
 
     useEffect(() => {
         fetchQuizzes();
+        
+        // Disable copy, cut, and paste for the entire document
+        const handleCopyPaste = (e) => e.preventDefault();
+        document.addEventListener('copy', handleCopyPaste);
+        document.addEventListener('cut', handleCopyPaste);
+        document.addEventListener('paste', handleCopyPaste);
+
+        return () => {
+            document.removeEventListener('copy', handleCopyPaste);
+            document.removeEventListener('cut', handleCopyPaste);
+            document.removeEventListener('paste', handleCopyPaste);
+        };
     }, []);
 
     const fetchQuizzes = async () => {
         try {
             const response = await axios.get(`${API_BASE_URL}/quizzes`);
             const data = response.data;
-            // Parse the options string into a JSON array
             const parsedData = data.map(quiz => ({
                 ...quiz,
                 options: JSON.parse(quiz.options)
@@ -42,7 +54,7 @@ const Quizzes = () => {
     };
 
     return (
-        <div className="quiz-section bg-gray-100 p-4 rounded-md shadow-md">
+        <div className="quiz-section bg-gray-100 p-4 rounded-md shadow-md h-screen overflow-y-auto">
             <h2 className="text-2xl font-medium mb-4">Quizzes</h2>
             {quizzes && quizzes.map(quiz => (
                 <div key={quiz.id} className="quiz border border-gray-300 p-4 rounded-md mb-4">
@@ -57,6 +69,9 @@ const Quizzes = () => {
                                     checked={answers[quiz.id] === option.id}
                                     onChange={() => handleAnswerChange(quiz.id, option.id)}
                                     className="mr-2 accent-blue-500"
+                                    onCopy={(e) => e.preventDefault()}
+                                    onCut={(e) => e.preventDefault()}
+                                    onPaste={(e) => e.preventDefault()}
                                 />
                                 <label className="text-sm">{option.text}</label>
                             </div>
@@ -77,3 +92,5 @@ const Quizzes = () => {
 };
 
 export default Quizzes;
+
+
