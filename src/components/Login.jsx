@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import {useRef} from 'react-router-dom'
 
 function Login() {
@@ -77,6 +78,9 @@ function Login() {
           </div>
           <button className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200" type="submit">Login</button>
         </form>
+        <p className="mt-4 text-center text-gray-600">
+          Don't have an account? <Link to="/register" className="text-blue-500">Register here</Link>
+        </p>
       </div>
     </div>
   );

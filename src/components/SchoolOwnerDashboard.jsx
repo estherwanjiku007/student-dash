@@ -1,52 +1,74 @@
+
+
 import React, { useState, useEffect } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import CreateSchool from './CreateSchool.jsx';
 import AddStudent from './AddStudent.jsx';
 import AddTeacher from './AddTeacher.jsx';
-import {useRef} from 'react-router-dom'
+import Logout from './Logout';
 
 function SchoolOwnerDashboard() {
-    const [schools, setSchools] = useState([]);
+  const [schools, setSchools] = useState([]);
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        fetchSchools();
-    }, []);
+  useEffect(() => {
+    fetchSchools();
+  }, []);
 
-    const fetchSchools = async () => {
-        try {
-            const response = await axios.get('https://virtulearn-backend.onrender.com/schools');
-            setSchools(response.data);
-        } catch (error) {
-            console.error('Error fetching schools:', error);
-        }
-    };
+  const fetchSchools = async () => {
+    try {
+      const response = await axios.get('https://virtulearn-backend.onrender.com/schools');
+      setSchools(response.data);
+    } catch (error) {
+      console.error('Error fetching schools:', error);
+    }
+  };
 
     const deleteSchool = async (schoolId) => {
         try {
             await axios.delete(`https://virtulearn-backend.onrender.com/schools/${schoolId}`);
-            fetchSchools();  // Refresh the list after deletion
+            fetchSchools(); // Refresh the list after deletion
         } catch (error) {
             console.error('Error deleting school:', error);
             alert('Error deleting school');
         }
+
     };
 
+    const handleLogout = () => {
+        // Perform logout actions here (if any)
+        navigate('/logout');
+      };
+
     return (
-        <div className="flex">
-            <div className="w-1/4 p-4 bg-gray-800 text-white min-h-screen">
-                <h2 className="text-2xl mb-4">Dashboard</h2>
-                <ul>
-                    <li className="mb-2"><Link to="/school-owner-dashboard" className="hover:underline">Dashboard</Link></li>
-                    <li className="mb-2"><Link to="/create-school" className="hover:underline">Create School</Link></li>
-                    <li className="mb-2"><Link to="/add-student" className="hover:underline">Add Student</Link></li>
-                    <li className="mb-2"><Link to="/add-teacher" className="hover:underline">Add Teacher</Link></li>
-                    <li className="mb-2"><Link to="/" className="hover:underline">Log out</Link></li>
-                </ul>
-            </div>
-            <div className="w-3/4 p-8">
+        <div className="flex h-screen overflow-hidden">
+            <div className="flex h-screen overflow-hidden">
+                <div className="w-3/4 p-4 bg-gray-100 border-r border-gray-300">
+                    <div className="mb-6">
+                    <h1 className="text-3xl font-bold">School Owners Dashboard</h1>
+                    </div>
+                    <div className="mb-6">
+                    <ul>
+                        <li className="mb-2 text-black">
+                        <Link to="/create-school" className="hover:underline text-black border-b border-gray-300 ">Create School</Link>
+                        </li>
+                        <li className="mb-2 text-black">
+                        <Link to="/add-student" className="hover:underline border-b border-gray-300 text-black">Add Student</Link>
+                        </li>
+                        <li className="mb-2 text-black">
+                        <Link to="/add-teacher" className="hover:underline border-b border-gray-300 text-black">Add Teacher</Link>
+                        </li>
+                        <li className="mb-2 text-black">
+                        <Link to="/logout" className="hover:underline border-b border-gray-300 text-black">Log out</Link>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+                </div>
+            <div className="w-3/4 p-8 overflow-y-auto">
                 <Routes>
-                    <Route path="/school-owner-dashboard" element={
+                    <Route path="/" element={
                         <>
                             <h1 className="text-4xl font-bold mb-8">Welcome to your Manager Dashboard</h1>
                             <div className="mb-8">
@@ -81,9 +103,9 @@ function SchoolOwnerDashboard() {
                     <p>&copy; 2024 VirtuLearn Academy. All rights reserved.</p>
                 </div>
             </div>
-        </div>
-    );
+        
+    </div>
+  );
 }
 
 export default SchoolOwnerDashboard;
-
