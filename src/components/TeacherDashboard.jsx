@@ -62,6 +62,8 @@ function TeacherDashboard() {
           <Card link="/studentData" title="Students Data" />
           <Card link="/teacher/details" title="Teacher's Details" />
           <Card link="/Attendance" title="Attendance Data" className="attendance-card" />
+          <Card link="/Schedule-Meeting" title="ScheduleMeeting" className="" />
+
           <button onClick={handleLogout} className="link text-blue-700 hover:text-blue-800">Log out</button>
         </div>
         <div className="main-content flex-grow p-4">

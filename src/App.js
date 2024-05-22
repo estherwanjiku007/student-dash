@@ -5,17 +5,18 @@ import Courses from './components/Courses';
 import Register from './components/Register';
 import Dailytask from './components/Dailytask';
 import Login from './components/Login';
-import StudentDash from './components/StudentDash'
+import StudentDash from './components/StudentDash';
 import SchoolOwnerDashboard from './components/SchoolOwnerDashboard';
-import AddStudent from './components/AddStudent.jsx';
-import TakeAttendance from './components/AddAttendance.jsx'
-import AddTeacher from './components/AddTeacher.jsx';
-import CreateSchool from './components/CreateSchool.jsx'
-import TeacherDashboard from './components/TeacherDashboard.jsx';
-import StudentData from './components/StudentData.jsx';
-import AttendanceTable from './components/Attendance.jsx';
-import Quizzes from './components/Quiz.jsx'
-import FileUpload from './components/FileUpload.jsx'
+import AddStudent from './components/AddStudent';
+import TakeAttendance from './components/AddAttendance';
+import AddTeacher from './components/AddTeacher';
+import CreateSchool from './components/CreateSchool';
+import TeacherDashboard from './components/TeacherDashboard';
+import StudentData from './components/StudentData';
+import AttendanceTable from './components/Attendance';
+import Quizzes from './components/Quiz';
+import FileUpload from './components/FileUpload';
+import ScheduleMeeting from './components/ScheduleMeeting';
 
 function App() {
   return (
@@ -38,10 +39,8 @@ function App() {
           <Route path="Attendance" element={<AttendanceTable />} />
           <Route path="Quiz" element={<Quizzes />} />
           <Route path="upload" element={<FileUpload />} />
-          
-        
+          <Route path="schedule-meeting" element={<ScheduleMeeting />} />
         </Route>
-        {/* <Route path='login' element={<div> Login page</div>}/> */}
       </Routes>
     </Router>
   );
