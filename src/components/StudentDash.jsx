@@ -104,7 +104,7 @@ const StudentDash = () => {
   };
 
   const handleExamsClick = () => {
-    navigate('/exams');
+    navigate('/Quiz');
   };
 
   const handleLogout = () => {
