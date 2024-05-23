@@ -16,17 +16,17 @@ import CreateSchool from './components/CreateSchool.jsx';
 import TeacherDashboard from './components/TeacherDashboard.jsx';
 import StudentData from './components/StudentData.jsx';
 import AttendanceTable from './components/Attendance.jsx';
-import Quizzes from './components/Quiz.jsx'
-import FileUpload from './components/FileUpload.jsx'
 import Contacts from "./components/Contacts.jsx"
 import About from "./components/About.jsx"
 import Quizzes from './components/Quiz.jsx';
 import FileUpload from './components/FileUpload.jsx';
+import AssessmentTable from './components/AssessmentTable.jsx';
+ 
 
 function App() {
   
   return (
-    
+    <AuthProvider>
     <Router>
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -49,10 +49,12 @@ function App() {
           <Route path="Quiz" element={<Quizzes />} />
           <Route path="upload" element={<FileUpload />} />
           <Route path="assessment" element={<AssessmentTable />} />
+          <Route path="Logout" element={<Logout />} />
         </Route>
         {/* <Route path='login' element={<div> Login page</div>}/> */}
       </Routes>
     </Router>
+    </AuthProvider>
     
   );
 }

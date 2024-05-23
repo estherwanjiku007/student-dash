@@ -38,6 +38,10 @@ function Login() {
     }
   };
 
+  const handleRegisterRedirect = () => {
+    navigate('/register');
+  };
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-sm">
@@ -67,6 +71,15 @@ function Login() {
             />
           </div>
           <button className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200" type="submit">Login</button>
+          <div className="mt-4 text-center">
+          <p className="text-gray-700">Don't have an account?</p>
+          <button
+            className="w-full bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 transition duration-200 mt-2"
+            onClick={handleRegisterRedirect}
+          >
+            Register
+          </button>
+          </div>
         </form>
       </div>
     </div>
