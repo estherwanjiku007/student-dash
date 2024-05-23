@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import ScheduleMeeting from './ScheduleMeeting'; 
 
 const API_BASE_URL = 'https://virtulearn-backend.onrender.com';
 
@@ -12,6 +13,7 @@ const StudentDash = () => {
   const [newMessage, setNewMessage] = useState('');
   const [students, setStudents] = useState([]);
   const [selectedStudent, setSelectedStudent] = useState('');
+  const [showScheduleMeeting, setShowScheduleMeeting] = useState(false); // State for showing ScheduleMeeting
 
   useEffect(() => {
     fetchCourses();
@@ -107,8 +109,8 @@ const StudentDash = () => {
     navigate('/Quiz');
   };
 
-  const handleLogout = () => {
-    navigate('/logout');
+  const handleSchedulemeeting = () => {
+    navigate('/schedule-meeting');
   };
 
   return (
@@ -122,7 +124,13 @@ const StudentDash = () => {
             </li>
             <li className="mb-2 text-black">
               <button className="hover:underline border-b border-gray-300" onClick={handleExamsClick}>Exams</button>
-            </li>            
+            </li>
+            {/* <li className="mb-2 text-black">
+              <button className="hover:underline border-b border-gray-300" onClick={() => setShowScheduleMeeting(true)}>Schedule Meeting</button>
+            </li> */}
+            <li className="mb-2 text-black">
+              <button onClick={handleSchedulemeeting} className="hover:underline border-b border-gray-300">Schedule Meeting</button>
+            </li>
           </ul>
         </nav>
       </aside>

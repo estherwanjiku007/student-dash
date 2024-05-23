@@ -53,6 +53,9 @@ function SchoolOwnerDashboard() {
             <li>
               <Link to="/add-teacher" className="w-full text-left font-semibold py-2 px-4 rounded-lg transition-colors duration-200 hover:bg-blue-100 text-blue-600 no-underline">Add Teacher</Link>
             </li>
+            <li>
+              <Link to="/schedule-meeting" className="w-full text-left font-semibold py-2 px-4 rounded-lg transition-colors duration-200 hover:bg-blue-100 text-blue-600 no-underline">Schedule meeting</Link>
+            </li>
             {/* <li>
               <button onClick={handleLogout} className="w-full text-left font-semibold py-2 px-4 rounded-lg transition-colors duration-200 hover:bg-red-100 text-blue-600 no-underline">Log out</button>
             </li> */}

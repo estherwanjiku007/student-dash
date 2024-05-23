@@ -8,7 +8,7 @@ import Dailytask from './components/Dailytask';
 import Login from './components/Login';
 import Logout from './components/Logout';
 import StudentDash from './components/StudentDash';
-import SchoolOwnerDashboard from './components/SchoolOwnerDashboard';
+import SchoolOwnerDashboard from './components/SchoolOwnerDashboard.jsx';
 import AddStudent from './components/AddStudent.jsx';
 import TakeAttendance from './components/AddAttendance.jsx';
 import AddTeacher from './components/AddTeacher.jsx';
@@ -21,7 +21,7 @@ import About from "./components/About.jsx"
 import Quizzes from './components/Quiz.jsx';
 import FileUpload from './components/FileUpload.jsx';
 import AssessmentTable from './components/AssessmentTable.jsx';
- 
+import ScheduleMeeting from './components/ScheduleMeeting';
 
 function App() {
   
@@ -38,7 +38,7 @@ function App() {
           <Route path="dailytask" element={<Dailytask />} />
           <Route path="Login" element={<Login />} />
           <Route path="StudentDash" element={<StudentDash />} />
-          <Route path="SchoolOwnerDashboard/*" element={<SchoolOwnerDashboard />} />
+          <Route path="SchoolOwnerDashboard" element={<SchoolOwnerDashboard />} />
           <Route path="add-student" element={<AddStudent />} />
           <Route path="add-teacher" element={<AddTeacher />} />
           <Route path="create-school" element={<CreateSchool />} />
@@ -50,8 +50,8 @@ function App() {
           <Route path="upload" element={<FileUpload />} />
           <Route path="assessment" element={<AssessmentTable />} />
           <Route path="Logout" element={<Logout />} />
+          <Route path="schedule-meeting" element={<ScheduleMeeting />} />
         </Route>
-        {/* <Route path='login' element={<div> Login page</div>}/> */}
       </Routes>
     </Router>
     </AuthProvider>

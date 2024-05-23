@@ -48,10 +48,10 @@ function TeacherDashboard() {
     return <div>Loading...</div>;
   }
 
-  const handleLogout = () => {
-    // Perform logout actions here (if any)
-    navigate('/logout');
-  };
+  // const handleLogout = () => {
+  //   // Perform logout actions here (if any)
+  //   navigate('/logout');
+  // };
 
   return (
     <div className="dashboard-container bg-gray-100">
@@ -62,23 +62,26 @@ function TeacherDashboard() {
           <Card link="/studentData" title="Students Data" />
           <Card link="/teacher/details" title="Teacher's Details" />
           <Card link="/Attendance" title="Attendance Data" className="attendance-card" />
+          <Card link="/Schedule-Meeting" title="Schedule Meeting" className="" />
+
+          {/* <button onClick={handleLogout} className="link text-blue-700 hover:text-blue-800">Log out</button> */}
         </div>
         <div className="main-content flex-grow p-4">
           <h1 className="welcome-header text-2xl font-bold mb-4">Welcome to your instructor Dashboard</h1>
-          <div className="attendance-data">
+          {/* <div className="attendance-data">
             <h2>Attendance Data</h2>
             {attendanceData.map((item, index) => (
               <div key={index} className="mb-2">
                 <p>{item.date}: {item.present ? 'Present' : 'Absent'}</p>
               </div>
             ))}
-          </div>
+          </div> */}
           <Routes>
             <Route path="addattendance" element={<div>Student Attendance</div>} />
             <Route path="upload" element={<div>Resources</div>} />
             <Route path="students-data" element={<div>Student Data</div>} />
             <Route path="details" element={<div>Teacher Details</div>} />
-            <Route path="logout" element={<Logout />} />
+            {/* <Route path="logout" element={<Logout />} /> */}
           </Routes>
         </div>
       </div>
