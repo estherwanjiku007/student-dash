@@ -58,10 +58,7 @@ function SchoolOwnerDashboard() {
                         </li>
                         <li className="mb-2 text-black">
                         <Link to="/add-teacher" className="hover:underline border-b border-gray-300 text-black">Add Teacher</Link>
-                        </li>
-                        <li className="mb-2 text-black">
-                        <Link to="/logout" className="hover:underline border-b border-gray-300 text-black">Log out</Link>
-                        </li>
+                        </li>                       
                     </ul>
                     </div>
                 </div>

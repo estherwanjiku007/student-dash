@@ -124,10 +124,7 @@ const StudentDash = () => {
             </li>
             <li className="mb-2 text-black">
               <button className="hover:underline border-b border-gray-300" onClick={handleExamsClick}>Exams</button>
-            </li>
-            <li className="mb-2 text-black">
-              <button onClick={handleLogout} className="hover:underline border-b border-gray-300">Log out</button>
-            </li>
+            </li>            
           </ul>
         </div>
       </div>

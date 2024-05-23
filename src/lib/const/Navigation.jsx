@@ -15,24 +15,27 @@ export const DashBoard_Sidebar_Links = [
     path: '/about',
     icon: <HiOutlineQuestionMarkCircle />
   },
-  // Add login link if needed
+
+  {
+    key: 'contact',
+    label: 'Contact',
+    path: '/contact',
+    icon: <IoIosCall />
+  }, 
+  
   {
     key: 'login',
     label: 'Login',
     path: '/login',
     icon: <HiLogin />
   },
+  
   // Add other links based on roles
 ];
 
 // Bottom links
 export const Dashboard_bottom_links = [
-  {
-    key: 'contact',
-    label: 'Contact',
-    path: '/contact',
-    icon: <IoIosCall />
-  },
+ 
   {
     key: 'settings',
     label: 'Settings',
