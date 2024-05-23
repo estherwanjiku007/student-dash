@@ -36,7 +36,7 @@ function Contacts() {
         </section>
         
       </div>
-      <footer className="w-full bg-blue-600 text-white py-3 text-center mt-10">
+      {/* <footer className="w-full bg-blue-600 text-white py-3 text-center mt-10">
         <div className="mb-2">
           <h4 className="text-lg font-semibold">Contact Us</h4>
         </div>
@@ -55,7 +55,7 @@ function Contacts() {
           </a>
         </div>
         <p className="text-sm">&copy; 2024 VirtuLearn Academy. All rights reserved.</p>
-      </footer>
+      </footer> */}
     </div>
   );
 }
