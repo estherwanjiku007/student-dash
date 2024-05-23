@@ -75,9 +75,9 @@ function TeacherDashboard() {
               </Link>
             </li>
             <li>
-              <Link to="/teacher/details" className="w-full text-left font-semibold py-2 px-4 rounded-lg transition-colors duration-200 hover:bg-blue-100 text-blue-600 no-underline">
+              {/* <Link to="/teacher/details" className="w-full text-left font-semibold py-2 px-4 rounded-lg transition-colors duration-200 hover:bg-blue-100 text-blue-600 no-underline">
                 Teacher's Details
-              </Link>
+              </Link> */}
             </li>
             <li>
               <Link to="/Attendance" className="w-full text-left font-semibold py-2 px-4 rounded-lg transition-colors duration-200 hover:bg-blue-100 text-blue-600 no-underline">
