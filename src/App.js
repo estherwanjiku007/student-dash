@@ -44,7 +44,7 @@ function App() {
           <Route path="Attendance" element={<AttendanceTable />} />
           <Route path="Quiz" element={<Quizzes />} />
           <Route path="upload" element={<FileUpload />} />
-          {/* <Route path="Logout" element={<Logout />} /> */}
+          <Route path="assessment" element={<AssessmentTable />} />
         </Route>
         {/* <Route path='login' element={<div> Login page</div>}/> */}
       </Routes>

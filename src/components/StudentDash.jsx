@@ -100,7 +100,7 @@ const StudentDash = () => {
   };
 
   const handleAssessmentsClick = () => {
-    navigate('/create-school');
+    navigate('/assessment');
   };
 
   const handleExamsClick = () => {
