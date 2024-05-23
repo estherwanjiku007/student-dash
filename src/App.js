@@ -1,17 +1,18 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import React, {useState} from 'react'
+import { AuthProvider } from './components/AuthContext';
 import Layout from './components/shared/Layout';
 import Home from './components/Home';
 import Courses from './components/Courses';
 import Register from './components/Register';
 import Dailytask from './components/Dailytask';
 import Login from './components/Login';
-import StudentDash from './components/StudentDash'
+import Logout from './components/Logout';
+import StudentDash from './components/StudentDash';
 import SchoolOwnerDashboard from './components/SchoolOwnerDashboard';
 import AddStudent from './components/AddStudent.jsx';
-import TakeAttendance from './components/AddAttendance.jsx'
+import TakeAttendance from './components/AddAttendance.jsx';
 import AddTeacher from './components/AddTeacher.jsx';
-import CreateSchool from './components/CreateSchool.jsx'
+import CreateSchool from './components/CreateSchool.jsx';
 import TeacherDashboard from './components/TeacherDashboard.jsx';
 import StudentData from './components/StudentData.jsx';
 import AttendanceTable from './components/Attendance.jsx';
@@ -19,6 +20,9 @@ import Quizzes from './components/Quiz.jsx'
 import FileUpload from './components/FileUpload.jsx'
 import Contacts from "./components/Contacts.jsx"
 import About from "./components/About.jsx"
+import Quizzes from './components/Quiz.jsx';
+import FileUpload from './components/FileUpload.jsx';
+
 function App() {
   
   return (

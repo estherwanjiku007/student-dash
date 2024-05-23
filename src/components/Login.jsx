@@ -1,31 +1,25 @@
-
-
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import {useRef} from 'react-router-dom'
+import { AuthContext } from './AuthContext';
 
 function Login() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('https://virtulearn-backend.onrender.com/login', {
-        name,
-        password
-      });
-
+      const response = await axios.post('https://virtulearn-backend.onrender.com/login', { name, password });
       const { role, token } = response.data;
-      // Store token in local storage or state as needed
-      localStorage.setItem('token', token);
 
-      // Navigate to the appropriate dashboard based on the role
+      localStorage.setItem('token', token);
+      login(); // Update auth status
+
       switch (role) {
         case 'student':
           navigate('/StudentDash', { state: { name } });
@@ -40,11 +34,7 @@ function Login() {
           setError('Invalid role');
       }
     } catch (error) {
-      if (error.response) {
-        setError(error.response.data.message || 'Login failed');
-      } else {
-        setError('Login failed');
-      }
+      setError(error.response ? error.response.data.message : 'Login failed');
     }
   };
 
@@ -78,13 +68,9 @@ function Login() {
           </div>
           <button className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200" type="submit">Login</button>
         </form>
-        <p className="mt-4 text-center text-gray-600">
-          Don't have an account? <Link to="/register" className="text-blue-500">Register here</Link>
-        </p>
       </div>
     </div>
   );
 }
 
 export default Login;
-

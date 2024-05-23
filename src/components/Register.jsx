@@ -317,7 +317,7 @@ function Register() {
                     {error && <p className="text-red-500">{error}</p>}
                 </div>
                 <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-x-2">
-                    <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Register</button><br/>
+                    <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Register</button>
                     <p className="text-center text-gray-600">
                         Already have an account? <Link to="/login" className="text-blue-500">Login here</Link>
                     </p>

@@ -120,12 +120,9 @@ const StudentDash = () => {
             <li>
               <button className="w-full text-left font-semibold py-2 px-4 rounded-lg transition-colors duration-200 hover:bg-blue-100 hover:text-blue-700" onClick={handleAssessmentsClick}>Assessments</button>
             </li>
-            <li>
-              <button className="w-full text-left font-semibold py-2 px-4 rounded-lg transition-colors duration-200 hover:bg-blue-100 hover:text-blue-700" onClick={handleExamsClick}>Exams</button>
-            </li>
-            <li>
-              <button className="w-full text-left font-semibold py-2 px-4 rounded-lg transition-colors duration-200 hover:bg-red-100 hover:text-red-700" onClick={handleLogout}>Log out</button>
-            </li>
+            <li className="mb-2 text-black">
+              <button className="hover:underline border-b border-gray-300" onClick={handleExamsClick}>Exams</button>
+            </li>            
           </ul>
         </nav>
       </aside>

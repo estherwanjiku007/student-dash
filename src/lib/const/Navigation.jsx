@@ -9,41 +9,37 @@ export const DashBoard_Sidebar_Links = [
     path: '/',
     icon: <HiHome />
   },
-  
   {
     key: 'about',
     label: 'About',
     path: '/about',
-    icon: <HiCollection />
+    icon: <HiOutlineQuestionMarkCircle />
   },
+
   {
-    key: 'contacts',
-    label: 'Contacts',
-    path: '/contacts',
+    key: 'contact',
+    label: 'Contact',
+    path: '/contact',
     icon: <IoIosCall />
-  },
-   {
-     key: 'login',
-     label: 'Login',
-     path: '/login',
-     icon: <HiLogin />
-   },
+  }, 
   
+  {
+    key: 'login',
+    label: 'Login',
+    path: '/login',
+    icon: <HiLogin />
+  },
+  
+  // Add other links based on roles
 ];
 
 // Bottom links
 export const Dashboard_bottom_links = [
+ 
   {
     key: 'settings',
     label: 'Settings',
     path: '/settings',
     icon: <IoMdSettings />
   },
-  {
-    key: 'support',
-    label: 'Help & Support',
-    path: '/support',
-    icon: <HiOutlineQuestionMarkCircle />
-  },
-  
 ];
