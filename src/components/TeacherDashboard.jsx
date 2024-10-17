@@ -4,8 +4,8 @@ import axios from 'axios';
 import Logout from './Logout';
 
 // Define the endpoints
-const ATTENDANCE_ENDPOINT = 'https://virtulearn-backend.onrender.com/attendances';
-const STUDENTS_ENDPOINT = 'https://virtulearn-backend.onrender.com/students';
+const ATTENDANCE_ENDPOINT = 'https://phase5-project-ierq.onrender.com/attendances';
+const STUDENTS_ENDPOINT = 'https://phase5-project-ierq.onrender.com/students';
 
 const Card = ({ link, title, className }) => (
   <div className={`card ${className || ''}`}>

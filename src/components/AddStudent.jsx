@@ -21,7 +21,7 @@ const AddStudent = () => {
 
   const onSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
-      const response = await axios.post('https://virtulearn-backend.onrender.com/students', values);
+      const response = await axios.post('https://phase5-project-ierq.onrender.com/students', values);
       if (response.status === 201) {
         alert('Student added successfully');
         resetForm();

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_BASE_URL = 'https://virtulearn-backend.onrender.com';
+const API_BASE_URL = 'https://phase5-project-ierq.onrender.com';
 
 const Quizzes = () => {
     const [quizzes, setQuizzes] = useState([]);

@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ScheduleMeeting from './ScheduleMeeting'; 
 
-const API_BASE_URL = 'https://virtulearn-backend.onrender.com';
+const API_BASE_URL = 'https://phase5-project-ierq.onrender.com';
+
 
 const StudentDash = () => {
   const navigate = useNavigate();

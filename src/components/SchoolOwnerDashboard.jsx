@@ -16,7 +16,7 @@ function SchoolOwnerDashboard() {
 
   const fetchSchools = async () => {
     try {
-      const response = await axios.get('https://virtulearn-backend.onrender.com/schools');
+      const response = await axios.get('https://phase5-project-ierq.onrender.com/schools');
       setSchools(response.data);
     } catch (error) {
       console.error('Error fetching schools:', error);
@@ -25,7 +25,7 @@ function SchoolOwnerDashboard() {
 
   const deleteSchool = async (schoolId) => {
     try {
-      await axios.delete(`https://virtulearn-backend.onrender.com/schools/${schoolId}`);
+      await axios.delete(`https://phase5-project-ierq.onrender.com/schools/${schoolId}`);
       fetchSchools(); // Refresh the list after deletion
     } catch (error) {
       console.error('Error deleting school:', error);

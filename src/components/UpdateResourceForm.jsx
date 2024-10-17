@@ -16,7 +16,7 @@ const UpdateResourceForm = ({ resourceId }) => {
     console.log('Resource ID:', resourceId); // Log the resourceId
     const fetchResource = async () => {
       try {
-        const response = await axios.get(`https://virtulearn-backend.onrender.com/resources/${resourceId}`);
+        const response = await axios.get(`https://phase5-project-ierq.onrender.com/resources/${resourceId}`);
         const resource = response.data;
 
         console.log('Fetched resource:', resource); // Log the fetched resource
