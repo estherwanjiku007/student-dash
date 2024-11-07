@@ -16,7 +16,7 @@ function SchoolOwnerDashboard() {
 
   const fetchSchools = async () => {
     try {
-      const response = await axios.get('https://phase5-project-ierq.onrender.com/schools');
+      const response = await axios.get('https://virtulearn-backend.onrender.com/schools');
       setSchools(response.data);
     } catch (error) {
       console.error('Error fetching schools:', error);

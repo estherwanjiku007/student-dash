@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const API_BASE_URL = 'https://phase5-project-ierq.onrender.com';
+const API_BASE_URL = 'https://virtulearn-backend.onrender.com/';
 
 const AttendanceTable = () => {
   const [attendances, setAttendances] = useState([]);

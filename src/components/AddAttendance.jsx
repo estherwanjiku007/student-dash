@@ -17,7 +17,7 @@ const TakeAttendance = () => {
   const onSubmit = async (values, actions) => {
     setIsSubmitting(true);
     try {
-      const response = await axios.post('https://phase5-project-ierq.onrender.com/attendances', values);
+      const response = await axios.post('https://virtulearn-backend.onrender.com/attendances', values);
       setSuccessMessage('Attendance record created successfully!');
       actions.resetForm(); // Clear form after successful submission
     } catch (error) {

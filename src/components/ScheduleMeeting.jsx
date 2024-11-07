@@ -10,7 +10,7 @@ function ScheduleMeeting() {
     event.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/create-meeting', {
+      const response = await axios.post('https://virtulearn-backend.onrender.com/create-meeting', {
         topic,
         startTime,
         duration,

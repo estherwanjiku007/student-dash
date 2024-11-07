@@ -9,7 +9,7 @@ const AssessmentsTable = () => {
   useEffect(() => {
     const fetchAssessments = async () => {
       try {
-        const response = await axios.get('https://phase5-project-ierq.onrender.com/assessments');
+        const response = await axios.get('https://virtulearn-backend.onrender.com//assessments');
         setAssessments(response.data);
       } catch (err) {
         setError(err.message);

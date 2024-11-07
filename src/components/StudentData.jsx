@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import * as XLSX from 'xlsx';
 
-const API_BASE_URL = 'https://phase5-project-ierq.onrender.com';
+const API_BASE_URL = 'https://virtulearn-backend.onrender.com';
 
 const StudentData = () => {
   const [students, setStudents] = useState([]);

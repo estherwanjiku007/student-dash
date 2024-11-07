@@ -18,7 +18,7 @@ const validationSchema = Yup.object({
 
 const onSubmit = async (values, { setSubmitting, resetForm }) => {
   try {
-    await axios.post('https://phase5-project-ierq.onrender.com/teachers', values);
+    await axios.post('https://virtulearn-backend.onrender.com//teachers', values);
     alert('Teacher added successfully');
     resetForm();
   } catch (error) {

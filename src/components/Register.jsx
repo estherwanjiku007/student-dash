@@ -28,7 +28,7 @@ function Register() {
         console.log("Submitting user data:", userdata);
 
         try {
-            const response = await fetch('https://phase5-project-ierq.onrender.com/register', {
+            const response = await fetch('https://virtulearn-backend.onrender.com/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

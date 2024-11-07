@@ -14,7 +14,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('https://phase5-project-ierq.onrender.com/login', { name, password });
+      const response = await axios.post('https://virtulearn-backend.onrender.com/login', { name, password });
       const { role, token } = response.data;
 
       localStorage.setItem('token', token);
